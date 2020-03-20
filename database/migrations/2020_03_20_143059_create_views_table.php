@@ -14,7 +14,10 @@ class CreateViewsTable extends Migration
     public function up()
     {
         Schema::create('views', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->integer('view_source')->nullable();
+            $table->unique(['view_source','events_id']);
+            $table->bigInteger('events_id')->unsigned();
             $table->timestamps();
         });
     }

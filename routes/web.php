@@ -74,7 +74,11 @@ Route::post('/contact/add','ContactController@add')->name('contact-add');
 Route::get('/about/team/all','TeamController@all')->name('team-all');
 Route::get('/about/team/active','TeamController@active')->name('team-active');
 //E-Mails
-Route::get('/email','ContactController@sendMessage');
+Route::get('/email',function (){
+    return view ('mails.confirm-mail')
+        ->with ('title','Title')
+        ->with ('url', env ('APP_URL'));
+});
 //Tasks
 Route::get('/tasks/run','TaskController@run');
 //Tests

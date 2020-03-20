@@ -1,5 +1,6 @@
 <?php
 
+use App\Picture;
 use Illuminate\Database\Seeder;
 
 class PictureSeeder extends Seeder
@@ -11,6 +12,15 @@ class PictureSeeder extends Seeder
      */
     public function run()
     {
-        //
+        for ($i = 1; $i <= 39; $i++){
+            for ($j = 1; $j <= 3; $j++){
+                Picture::create([
+                    'events_id' => $i,
+                    'picture_url' => 'card-blog1.jpg',
+                    'picture_created' => time(),
+                    'picture_updated' => time(),
+                ]);
+            }
+        }
     }
 }

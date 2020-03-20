@@ -32,7 +32,6 @@ class ConfirmMail extends Mailable
     {
         return $this->subject($this->details['subject'])
             ->to($this->details['email'])
-            ->from (env ('MAIL_FROM_ADDRESS'))
             ->view('mails.confirm-mail')
             ->with([
                 'title' => $this->details['subject'],

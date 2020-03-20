@@ -173,7 +173,7 @@
                                                                             </td>
                                                                             <td align="left" style="font-family: 'LyftPro-Regular', Arial, Helvetica, sans-serif; font-size: 18px; line-height: 1.4; color: #000000; padding: 15px 15px 15px 0; background-color: #EFEFF1;">
                                                                                 Have a question? <br />
-                                                                                <a href="{{ route('contact') }}" style="color: #ff00bf;">Reach out to our team</a>
+                                                                                <a href="{{ route('about') }}" style="color: #ff00bf;">Reach out to our team</a>
                                                                             </td>
                                                                         </tr>
                                                                     </table>

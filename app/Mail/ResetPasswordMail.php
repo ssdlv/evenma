@@ -32,7 +32,6 @@ class ResetPasswordMail extends Mailable
     {
         return $this->subject($this->details['subject'])
             ->to($this->details['email'])
-            ->from (env ('MAIL_FROM_ADDRESS'))
             ->view('mails.reset-password-mail')
             ->with([
                 'title' => $this->details['subject'],

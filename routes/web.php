@@ -17,7 +17,7 @@ Route::get('/', 'UI\UIController@home')->name ('home');
 
 Auth::routes(['verify' => true]);
 
-Route::get('/home', 'HomeController@index')->name('home');
+//Route::get('/home', 'HomeController@index')->name('home');
 
 //UI
 Route::get('/types', 'UI\UIController@type')->name('type');
@@ -31,9 +31,17 @@ Route::get('/details', 'UI\UIController@details')->name('details');
 Route::get('/add', 'UI\UIController@add')->name('add');
 Route::get('/edit', 'UI\UIController@edit')->name('edit');
 Route::get('/ui/edit/init', 'UI\UIController@edit');
-Route::get('/home', 'UI\UIController@home')->name('home');
+Route::get('/home', 'UI\UIController@home');
 Route::get('/ui/conditions/init', 'UI\UIController@conditions');
 
+//AUTH
+Route::get('password.reset.{token}', 'Auth\ResetPasswordController@showResetForm')->name('password-reset');
+Route::get('password.reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password-request');
+Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password-reset');
+Route::post('/auth/login', 'UserController@login');
+Route::get('/auth/logout', 'UserController@logout');
+
+Route::post('/auth/register', 'UserController@register');
 //EVENTS
 Route::get('/events/all', 'EventController@all');
 Route::get('/events/get', 'EventController@get');

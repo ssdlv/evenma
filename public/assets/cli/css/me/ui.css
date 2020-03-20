@@ -1,0 +1,28 @@
+.txt-center{
+    text-align: center;
+}
+.daterangepicker .ranges li.active {
+    background-color: #9c27b0;
+    color: #ffffff;
+}
+.daterangepicker .ranges li {
+    font-size: 13px;
+    padding: 8px 12px;
+    font-family: Roboto Slab, Times New Roman, serif;
+    cursor: pointer;
+    color: #333333;
+}
+.daterangepicker .ranges li:hover {
+    background-color: #9c27b0;
+    color: #ffffff;
+}
+.daterangepicker td.active, .daterangepicker td.active:hover {
+    background-color: #9c27b0;
+    border-color: transparent;
+    color: #fff;
+}
+.filter-option-data-range{
+    font-size: 12px;
+}
+
+

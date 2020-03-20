@@ -14,7 +14,7 @@ use Illuminate\Notifications\Notifiable;
  * @property mixed profile
  * @property mixed confirmation_token
  */
-class User extends Authenticatable implements MustVerifyEmail
+class User extends Authenticatable //implements MustVerifyEmail
 {
     use Notifiable;
 

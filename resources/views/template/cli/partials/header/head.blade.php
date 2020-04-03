@@ -149,4 +149,5 @@
     <link rel="stylesheet" href="{{ asset('css/ui.css') }}">
     <!--script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=5de2fbaa3258ca0012c8055f&product=inline-share-buttons' async='async'></script-->
     <script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=5de30877ffa1890012c403e4&product=inline-share-buttons" async="async"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 </head>

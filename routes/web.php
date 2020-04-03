@@ -13,6 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/welcome', function (){
+    $class = 'index-page sidebar-collapse';
+    return view ('welcome',compact ('class'));
+});
 Route::get('/', 'UI\UIController@home')->name ('home');
 
 Auth::routes(['verify' => true]);

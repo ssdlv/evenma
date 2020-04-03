@@ -74,6 +74,7 @@
             f.parentNode.insertBefore(j, f);
         })(window, document, 'script', 'dataLayer', 'GTM-NKDMSK6');
     </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
     <!-- End Google Tag Manager -->
     <link rel="stylesheet" href="{{ asset('css/ui.css') }}">
     <style>

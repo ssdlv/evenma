@@ -479,6 +479,7 @@ class EventController extends Controller
         else {
             return response ()->json ([
                 'result' => 'error',
+                'title' => 'Error !',
                 'class'  => 'is-invalid',
                 $validate[0]->errors ()->all (),
                 $validate[1]->errors ()->all (), $request->file ('event-picture0')->getSize ()

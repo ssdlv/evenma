@@ -13,7 +13,7 @@ evenma = {
                 spinner('loading','#add-event-form','Finish');
             },
             success: function(response){
-                //console.log(response);
+                console.log(response);
                 if (response.result === 'success') {
                     demo.showSwal('success-message');
                 }
@@ -26,7 +26,7 @@ evenma = {
             }
         }).done(function() {
             spinner('init','#add-event-form');
-            $('#formAddEvent').trigger("reset");
+            //$('#formAddEvent').trigger("reset");
         })/*.fail(function() {
             alert('Server not responding...');
         })*/;

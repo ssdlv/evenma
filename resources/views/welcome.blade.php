@@ -51,7 +51,7 @@
         <div id="cards" class="cd-section section" style="padding: 0px;">
             <div class="section-white">
                 <div class="cards">
-
+    {{ $class }}
                     <div class="">
                         <div class="section" style="padding: 0px;">
                             <div class="container">

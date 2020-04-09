@@ -14,7 +14,8 @@ use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
-use Validator;
+//use Validator;
+use Illuminate\Support\Facades\Validator;
 
 class EventController extends Controller
 {
@@ -441,38 +442,57 @@ class EventController extends Controller
     }
     public function add(Request $request)
     {
-        $eDao = new EventDao();
+        $validate = $this->eventValidate ($request);
+        if ($validate[0]->errors ()->isEmpty () && $validate[1]->errors ()->isEmpty () ){
+            $eDao = new EventDao();
 
-        $time = $request->get('event-time-start');
-        $time0 = strtotime($time); $time1 = date('d\-m\-Y H:i', $time0);
-        $date = $request->get('event-date-start');
-        $date = strtotime($date); $date1 = date('d\-m\-Y H:i', $date);
+            $time = $request->get('event-time-start');
+            //$time0 = strtotime($time); //$time1 = date('d\-m\-Y H:i', $time0);
+            $date = $request->get('event-date-start');
+            $date = strtotime($date); //$date1 = date('d\-m\-Y H:i', $date);
 
-        $start = strtotime($time, $date);
-        $start1 = date('d\-m\-Y H:i', $start);
+            $start = strtotime($time, $date);
+            //$start1 = date('d\-m\-Y H:i', $start);
 
-        $event = new Event();
-        $event->date = $date;
-        $event->start = $start;
-        $event->title = $request->get('event-title');
-        $event->desc = $request->get('event-desc');
-        $event->type = $request->get('event-select-type');
-        $event->city = $request->get('event-select-city');
-        $event->location = $request->get('event-location');
-        $event->file = $this->addedFile($request, null)['picture0'];
-        $event->user = session('users.id');
-        $event = $eDao->add($event);
-        $option = $this->addedOption($request, $event->id);
-        $pictures = $this->addedFile($request, $event->id);
-        return response()->json([
-            'event' => $event->id,
-            'option' => $option,
-            'pictures' => $pictures,
-            'result' => 'success',
-            'title' => 'Information',
-            'message' => 'Event add success !',
-        ]);
-        //$this->addedFile($request);
+            $event = new Event();
+            $event->date = $date;
+            $event->start = $start;
+            $event->title = $request->get('event-title');
+            $event->desc = $request->get('event-desc');
+            $event->type = $request->get('event-select-type');
+            $event->city = $request->get('event-select-city');
+            $event->location = $request->get('event-location');
+            $event->file = $this->addedFile($request, null)['picture0'];
+            $event->user = session('users.id');
+            $event = $eDao->add($event);
+            $option = $this->addedOption($request, $event->id);
+            $pictures = $this->addedFile($request, $event->id);
+            return response()->json([
+                'event' => $event->id,
+                'option' => $option,
+                'pictures' => $pictures,
+                'result' => 'success',
+                'title' => 'Information',
+                'message' => 'Event add success !',
+            ]);
+        }
+        else {
+            return response ()->json ([
+                'result' => 'error',
+                'class'  => 'is-invalid',
+                $validate[0]->errors ()->all (),
+                $validate[1]->errors ()->all (), $request->file ('event-picture0')->getSize ()
+            ]);
+        }
+    }
+    private function eventValidate(Request $request)
+    {
+        $validator0 = Validator::make($request->all (), Picture::$rules);
+        $validator1 = Validator::make($request->all (), Event::$rules);
+        return [
+            $validator0,
+            $validator1
+        ];
     }
     public function added(Request $request)
     {
@@ -591,4 +611,16 @@ class EventController extends Controller
         }
 
     }
+
+    public function msg($input)
+    {
+        return [
+            "$input.required"=> 'Ce champs est obligatoire !',
+            "$input.file"=> 'Ce champs doit etre une image !',
+            "$input.mines"=> 'Type non autorisé !',
+            "$input.size"=> 'Taille dépassée !'
+        ];
+    }
+
+
 }

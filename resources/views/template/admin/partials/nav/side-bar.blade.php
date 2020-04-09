@@ -6,11 +6,11 @@
     -->
 
     <div class="logo">
-        <a href="{{ route('welcome') }}" class="simple-text logo-mini">
+        <a href="{{ route('home') }}" class="simple-text logo-mini">
             TM
         </a>
 
-        <a href="{{ route('welcome') }}" class="simple-text logo-normal">
+        <a href="{{ route('home') }}" class="simple-text logo-normal">
             Evenma
         </a>
     </div>

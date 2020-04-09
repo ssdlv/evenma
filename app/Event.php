@@ -26,4 +26,20 @@ class Event extends Model
         ,'event_location', 'event_priority', 'event_created', 'event_updated', 'users_id', 'delete'
         ,'cities_id', 'types_id','event_created','event_updated'
     ];
+
+    public static $rules = [
+        'event-title'=> 'required|string|min:3',
+        'event-desc'=> 'required|min:50',
+        'event-location'=> 'required|min:3',
+        'event-select-type'=> 'required|integer',
+        'event-select-city'=> 'required|integer',
+        'event-date-start'=> 'required|date',
+        'event-time-start'=> 'required|date_format:H:i',
+    ];
+    public static $messages = [
+        'title.required'=> 'Ce champs est obligatoire !',
+        'desc.required'=> 'Ce champs est obligatoire !',
+        'image.required'=> 'Ce champs est obligatoire !',
+        'location.required'=> 'Ce champs est obligatoire !',
+    ];
 }

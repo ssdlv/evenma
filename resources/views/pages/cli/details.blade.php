@@ -79,9 +79,27 @@
                                     </h5>
                                 </div>
                                 <!--collapse show-->
-                                <div id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
-                                    <div class="card-body">
+                                <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
+                                    <div class="card-body" >
                                         <p>{{ $event[0]->event_desc }}.</p>
+
+                                        @foreach($event[0]->elements as $element)
+                                        <div class="form-group row">
+                                            <div class="input-group col-12">
+                                                <li>
+                                                    <a href="javascript:void(0)">{{ $element->element_date }}  -  {{ $element->element_title }}</a>
+                                                    <ul>
+                                                        @foreach($element->items as $item)
+                                                            <li>{{ $item->item_start }} à {{ $item->item_end }} -> <a href="javascript:void(0)">{{ $item->item_title }}</a></li>
+                                                            @php
+                                                                //dump($item->item_title);
+                                                            @endphp
+                                                        @endforeach
+                                                    </ul>
+                                                </li>
+                                            </div>
+                                        </div>
+                                        @endforeach
                                     </div>
                                 </div>
                             </div>
@@ -94,7 +112,7 @@
                                         </a>
                                     </h5>
                                 </div>
-                                <div id="collapseTwo" class="collapse show" role="tabpanel" aria-labelledby="headingTwo" data-parent="#accordion">
+                                <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo" data-parent="#accordion">
                                     <div class="card-body" style="list-style-type: none;">
                                         <!--ul style="list-style-type: none;"-->
                                         @if(strlen($event[0]->event_location) <= 36 && strlen($event[0]->city_name) <= 22)
@@ -269,7 +287,8 @@
                         </div>
                     </div>
                     @php
-                        //dump($event[0]);
+                        dump(csrf_token ());
+                        //dump($event[0]->elements[0]->items);
                         //dump($suggestions);
                     @endphp
                 </div>

@@ -6,7 +6,9 @@
 
     use App\City;
     use App\Dao\CityDao;
+    use App\Dao\ElementDao;
     use App\Dao\EventDao;
+    use App\Dao\ItemDao;
     use App\Dao\PictureDao;
     use App\Dao\TypeDao;
     use App\Event;
@@ -109,19 +111,37 @@
         {
             $eDao = new EventDao();
             $pDao = new PictureDao();
+            $elDao = new ElementDao();
+            $iDao = new ItemDao();
             $event = $eDao->get($request->get('event'));
 
-            $event{0}->time = date('h\h : m', $event{0}->event_start);
+            $event{0}->time = date('h\h : i', $event{0}->event_start);
             $event{0}->date = date('Y-m-d', $event{0}->event_start);
             $event{0}->start = date('d M Y \à H\h : i', $event{0}->event_start);
             $event{0}->picture = 'files/events/' . $event{0}->event_image;
+            ##Elements
+            $elements = $elDao->getByEvent ($event{0}->event_id);
+            foreach ($elements as $element){
+                $element->element_date = date('d-m-Y', $element->element_date);
+                ##Load Items
+                $items = $iDao->getByElement ($element->id);
+                foreach ($items as $item){
+                    $item->item_start = date('h\h : i', $item->item_start);
+                    $item->item_end = date('h\h : i', $item->item_end);
+                }
+                $element->items = $items;
+            }
+            $event{0}->elements = $elements;
+            ##Pictures
             $pictures = $pDao->getByEvent($event{0}->event_id);
             foreach ($pictures as $picture){
                 $picture->picture = 'files/events/' . $picture->picture_url;
             }
             $event{0}->pictures = $pictures;
+            ##Options
             $event{0}->option = (new OptionController)->get(null,$event{0}->event_id);
             //dd($event);
+            ##Suggestions
             $data = [
                 'limit' => 3,
                 'type' => $event{0}->types_id,

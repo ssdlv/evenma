@@ -16,6 +16,8 @@ class DatabaseSeeder extends Seeder
         $this->call(TypeSeeder::class);
         $this->call(UserSeeder::class);
         $this->call(EventSeeder::class);
+        $this->call(ElementSeeder::class);
+        $this->call(ItemSeeder::class);
         $this->call(OptionSeeder::class);
         $this->call(PictureSeeder::class);
         $this->call(TeamSeeder::class);

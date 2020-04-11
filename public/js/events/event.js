@@ -4,6 +4,9 @@ $(document).ready(function () {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
+    let token = $('meta[name="csrf-token"]').attr('content');
+    //alert(token);
+    //var csrftoken = jQuery("[name=csrfmiddlewaretoken]").val();
 
     /*var pageURL = window.location.href;
     var lastURLSegment = pageURL.substr(pageURL.lastIndexOf('/') + 1);

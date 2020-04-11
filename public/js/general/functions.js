@@ -175,6 +175,10 @@ evenma = {
         });
     },
 };
+$(document).ready(function () {
+    let token = $('meta[name="csrf-token"]').attr('content');
+});
+let token = $('meta[name="csrf-token"]').attr('content');
 function toastAlert(title, message, type) {
     toastr[type](message, title);
     toastr.options = {
@@ -226,14 +230,14 @@ function events(city, type, search, start = 0, end = 0, page = 1, nature = 0) {
                             rows_premium = rows_premium + '<div class="col-lg-4 col-md-6">\n' +
                                 '                                    <div class="card card-product">\n' +
                                 '                                        <div class="card-header card-header-image">\n' +
-                                '                                            <a href="/details?event='+value.event_id+'" data-id="'+value.event_id+'" class="add-view">\n' +
+                                '                                            <a href="/details?event='+value.event_id+'&_token='+token+'" data-id="'+value.event_id+'" class="add-view">\n' +
                                 '                                                <img class="img" src="/files/events/'+value.event_image+'">\n' +
                                 '                                            </a>\n' +
                                 '                                        </div>\n' +
                                 '                                        <div class="card-body">\n' +
                                 '                                            <h6 class="card-category text-info">'+value.type_name+'</h6>\n' +
                                 '                                            <h4 class="card-title">\n' +
-                                '                                                <a href="/details?event='+value.event_id+' data-id="'+value.event_id+'" class="add-view">'+value.event_title+'</a>\n' +
+                                '                                                <a href="/details?event='+value.event_id+'&_token='+token+'" data-id="'+value.event_id+'" class="add-view">'+value.event_title+'</a>\n' +
                                 '                                            </h4>\n' +
                                 '                                            <p class="card-description">'+value.event_desc+'</p>\n' +
                                 '                                        </div>\n' +
@@ -253,14 +257,14 @@ function events(city, type, search, start = 0, end = 0, page = 1, nature = 0) {
                             rows = rows + '<div class="col-lg-4 col-md-6">\n' +
                                 '                                    <div class="card card-product">\n' +
                                 '                                        <div class="card-header card-header-image">\n' +
-                                '                                            <a href="/details?event='+value.event_id+'" data-id="'+value.event_id+'" class="add-view">\n' +
+                                '                                            <a href="/details?event='+value.event_id+'&_token='+token+'" data-id="'+value.event_id+'" class="add-view">\n' +
                                 '                                                <img class="img" src="/files/events/'+value.event_image+'">\n' +
                                 '                                            </a>\n' +
                                 '                                        </div>\n' +
                                 '                                        <div class="card-body">\n' +
                                 '                                            <h6 class="card-category text-info">'+value.type_name+'</h6>\n' +
                                 '                                            <h4 class="card-title">\n' +
-                                '                                                <a href="/details?event='+value.event_id+' data-id="'+value.event_id+'" class="add-view">'+value.event_title+'</a>\n' +
+                                '                                                <a href="/details?event='+value.event_id+'&_token='+token+'" data-id="'+value.event_id+'" class="add-view">'+value.event_title+'</a>\n' +
                                 '                                            </h4>\n' +
                                 '                                            <p class="card-description">'+value.event_desc+'</p>\n' +
                                 '                                        </div>\n' +
@@ -352,7 +356,7 @@ function getEventByUser(user){
                     '                                                    <i class="material-icons">more_horiz</i>\n' +
                     '                                                </a>\n' +
                     '                                                <div class="dropdown-menu dropdown-with-icons">\n' +
-                    '                                                    <a href="/details?event={{ $event->event_id }}" class="dropdown-item">\n' +
+                    '                                                    <a href="/details?event='+value.event_id+'&_token='+token+'" class="dropdown-item">\n' +
                     '                                                        <i class="material-icons">visibility</i> View\n' +
                     '                                                    </a>\n' +
                     '                                                </div>\n' +
@@ -377,7 +381,7 @@ function getEventByUser(user){
                     '                                                    <i class="material-icons">more_horiz</i>\n' +
                     '                                                </a>\n' +
                     '                                                <div class="dropdown-menu dropdown-with-icons">\n' +
-                    '                                                    <a href="/details?event='+value.event_id+'" class="dropdown-item">\n' +
+                    '                                                    <a href="/details?event='+value.event_id+'&_token='+token+'" class="dropdown-item">\n' +
                     '                                                        <i class="material-icons">visibility</i> View\n' +
                     '                                                    </a>\n' +
                     '                                                    <a href="/edit?event='+value.event_id+'" class="dropdown-item">\n' +
@@ -421,7 +425,7 @@ function getEvents(url, nature = 0, page = 1, city = 0, type = 0, search = '') {
                         '<div class="col-md-4">\n' +
                         '                    <div class="card card-product">\n' +
                         '                        <div class="card-image" data-header-animation="true">\n' +
-                        '                            <a href="#pablo">\n' +
+                        '                            <a href="details?event='+value.event_id+'&_token='+token+'">\n' +
                         '                                <img class="img" src="'+value.event_image+'">\n' +
                         '                            </a>\n' +
                         '                        </div>\n' +
@@ -432,10 +436,10 @@ function getEvents(url, nature = 0, page = 1, city = 0, type = 0, search = '') {
                         '                                    <i class="material-icons">build</i> Fix Header!\n' +
                         '                                </button>\n' +
                         '\n' +
-                        '                                <button onclick="location.href=\'/details?event='+value.event_id+'\'" type="button" class="btn btn-default btn-simple" rel="tooltip" data-placement="bottom" title="View">\n' +
+                        '                                <button onclick="location.href=\'/details?event='+value.event_id+'&_token='+token+'\'" type="button" class="btn btn-default btn-simple" rel="tooltip" data-placement="bottom" title="View">\n' +
                         '                                    <i class="material-icons">remove_red_eye</i>\n' +
                         '                                </button>\n' +
-                        '                                <button onclick="location.href=\'/details?event='+value.event_id+'\'" type="button" class="btn btn-success btn-simple" rel="tooltip" data-placement="bottom" title="Edit">\n' +
+                        '                                <button onclick="location.href=\'/details?event='+value.event_id+'&_token='+token+'\'" type="button" class="btn btn-success btn-simple" rel="tooltip" data-placement="bottom" title="Edit">\n' +
                         '                                    <i class="material-icons">edit</i>\n' +
                         '                                </button>\n' +
                         '                                <!--button type="button" class="btn btn-danger btn-simple" rel="tooltip" data-placement="bottom" title="Remove">\n' +

@@ -123,8 +123,9 @@
                                                         <i class="material-icons">email</i>
                                                     </span>
                                                     <div class="form-group label-floating">
-                                                        <label class="control-label">Description <small>(required)</small></label>
-                                                        <input id="event-desc" name="event-desc" type="text" class="form-control" value="Description">
+                                                        <label for="event-desc" class="control-label">Description <small>(required)</small></label>
+                                                        <!--input id="event-desc" name="event-desc" type="text" class="form-control" value="Description"-->
+                                                        <textarea required class="form-control" rows="" id="event-desc" name="event-desc"></textarea>
                                                     </div>
                                                 </div>
                                             </div>

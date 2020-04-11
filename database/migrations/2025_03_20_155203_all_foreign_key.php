@@ -13,9 +13,9 @@ class AllForeignKey extends Migration
      */
     public function up()
     {
-        /*Schema::table('items', function (Blueprint $table){
+        Schema::table('items', function (Blueprint $table){
             $table->foreign('elements_id')->references('id')->on('elements')->onDelete('cascade');
-        });*/
+        });
         Schema::table('pictures', function (Blueprint $table){
             $table->foreign('events_id')->references('id')->on('events')->onDelete('cascade');
         });
@@ -25,9 +25,9 @@ class AllForeignKey extends Migration
         /*Schema::table('speakers', function (Blueprint $table){
             $table->foreign('elements_id')->references('id')->on('elements')->onDelete('cascade');
         });*/
-        /*Schema::table('elements', function (Blueprint $table){
+        Schema::table('elements', function (Blueprint $table){
             $table->foreign('events_id')->references('id')->on('events')->onDelete('cascade');
-        });*/
+        });
         Schema::table('events', function (Blueprint $table){
             $table->foreign('users_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('cities_id')->references('id')->on('cities')->onDelete('cascade');

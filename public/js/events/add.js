@@ -28,8 +28,18 @@ $(document).ready(function () {
         if (desc === '') {
             $('#preview-desc').text('Description');
         } else {
-            desc = desc.substr(0, 149);
-            $('#preview-desc').text(desc + '...');
+            if (desc.length >= 50){
+                console.log(desc.length);
+                $('#event-desc').attr('rows','3')
+            }
+
+            if (desc.length >= 149){
+                desc = desc.substr(0, 149);
+                $('#preview-desc').text(desc + '...');
+            }
+            else {
+                $('#preview-desc').text(desc);
+            }
         }
     });
     //Preview time

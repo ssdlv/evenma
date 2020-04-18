@@ -51,7 +51,6 @@
         <div id="cards" class="cd-section section" style="padding: 0px;">
             <div class="section-white">
                 <div class="cards">
-    {{ $class }}
                     <div class="">
                         <div class="section" style="padding: 0px;">
                             <div class="container">
@@ -129,54 +128,13 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-8 mr-auto ml-auto">
-                        <!-- Carousel Card -->
-                        <div class="card card-raised card-carousel">
-                            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-interval="3000">
-                                <ol class="carousel-indicators">
-                                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                                </ol>
-                                <div class="carousel-inner">
-                                    <div class="carousel-item active">
-                                        <img class="d-block w-100" src="assets/img/bg2.jpg" alt="First slide">
-                                        <div class="carousel-caption d-none d-md-block">
-                                            <h4>
-                                                <i class="material-icons">location_on</i>
-                                                Yellowstone National Park, United States
-                                            </h4>
-                                        </div>
-                                    </div>
-                                    <div class="carousel-item">
-                                        <img class="d-block w-100" src="assets/img/bg3.jpg" alt="Second slide">
-                                        <div class="carousel-caption d-none d-md-block">
-                                            <h4>
-                                                <i class="material-icons">location_on</i>
-                                                Somewhere Beyond, United States
-                                            </h4>
-                                        </div>
-                                    </div>
-                                    <div class="carousel-item">
-                                        <img class="d-block w-100" src="assets/img/bg.jpg" alt="Third slide">
-                                        <div class="carousel-caption d-none d-md-block">
-                                            <h4>
-                                                <i class="material-icons">location_on</i>
-                                                Yellowstone National Park, United States
-                                            </h4>
-                                        </div>
-                                    </div>
-                                </div>
-                                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                                    <i class="material-icons">keyboard_arrow_left</i>
-                                    <span class="sr-only">Previous</span>
-                                </a>
-                                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                                    <i class="material-icons">keyboard_arrow_right</i>
-                                    <span class="sr-only">Next</span>
-                                </a>
-                            </div>
-                        </div>
-                        <!-- End Carousel Card -->
+                        <h1>Titre principal</h1>
+                        <p>Un paragraphe</p>
+                        <p id='p1'></p>
+
+                        <button id='b1'>Deux pages en arrières dans l'historique</button>
+                        <button id='b2'>Vers la page précédente dans l'historique</button>
+                        <button id='b3'>Vers la page suivante dans l'historique</button>
                     </div>
                     <div class="col-md-6 ml-auto mr-auto">
                         <div class="card card-raised card-form-horizontal">
@@ -240,6 +198,7 @@
 @section('script')
     <script>
 
+        //console.log(window.history.back());
     </script>
     @include('template.cli.partials.script.script')
 @endsection

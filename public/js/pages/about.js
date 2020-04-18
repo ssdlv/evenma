@@ -127,4 +127,51 @@ $(document).ready(function () {
         });
     }
 
+    let h = window.history.valueOf();
+    let history = window.history.length;
+    console.log(h);
+    $('#p1').text(history + ' pages visitées');
+
+    //document.getElementById('p1').innerText= history.length + ' pages visitées';
+
+//On accède aux boutons b1, b2 et b3
+    let b1 = document.getElementById('b1');
+    let b2 = document.getElementById('b2');
+    let b3 = document.getElementById('b3');
+
+//On définit des gestionnaires d'évènement click pour ces boutons
+    b1.addEventListener('click', hgo);
+    b2.addEventListener('click', hback);
+    b3.addEventListener('click', hforward);
+
+    function hgo(){
+        alert(window.history.go.name);
+    }
+    function hback(){
+        window.history.back();
+    }
+    function hforward(){
+        window.history.forward();
+    }
+
+    function listCookies() {
+        let theCookies = document.cookie.split(';');
+        let aString = '';
+        for (let i = 1 ; i <= theCookies.length; i++) {
+            aString += i + ' ' + theCookies[i-1] + "\n";
+        }
+        return aString;
+    }
+
+    function navigator() {
+        let object = window.navigator.geolocation;
+        return   {
+            'platform' : window.navigator.platform,
+            'location' : window.navigator.geolocation,
+            'mediaDevices' : window.navigator.mediaDevices,
+        };
+    }
+
+    //console.log(listCookies());
+    //console.log(navigator());
 });

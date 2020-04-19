@@ -24,48 +24,39 @@
                     <div class="col-md-5 col-sm-5">
                         <div class="tab-content">
                             <div class="tab-pane active" id="product-page1">
-                                <img src="{{ $event[0]->picture }}" style="height: 400px; max-width: 400px;">
+                                <img src="{{ $event->picture }}" style="height: 400px; max-width: 400px;">
                             </div>
-                            <div class="tab-pane" id="product-page2" >
-                                <img src="{{ $event[0]->pictures[0]->picture }}" style="height: 400px; max-width: 400px;">
+                            @php $i = 2; @endphp
+                            @foreach($event->pictures as $picture)
+                            <div class="tab-pane" id="product-page@php echo $i @endphp" >
+                                <img src="{{ $picture->picture }}" style="height: 400px; max-width: 400px;">
                             </div>
-                            <div class="tab-pane" id="product-page3">
-                                <img src="{{ $event[0]->pictures[1]->picture }}" style="height: 400px; max-width: 400px;">
-                            </div>
-                            <div class="tab-pane" id="product-page4">
-                                <img src="{{ $event[0]->pictures[2]->picture }}" style="height: 400px; max-width: 400px;">
-                            </div>
+                                @php $i++; @endphp
+                            @endforeach
                         </div>
                         <div class="tab-content">
                             <ul class="nav flexi-nav ul-small-img" data-tabs="tabs" id="flexiselDemo1">
                                 <li class="nav-item">
                                     <a href="#product-page1" class="nav-link" data-toggle="tab">
-                                        <img src="{{ $event[0]->picture }}">
+                                        <img src="{{ $event->picture }}">
                                     </a>
                                 </li>
-                                <li class="nav-item">
-                                    <a href="#product-page2" class="nav-link" data-toggle="tab">
-                                        <img src="{{ $event[0]->pictures[0]->picture }}">
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#product-page3" class="nav-link" data-toggle="tab">
-                                        <img src="{{ $event[0]->pictures[1]->picture }}">
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#product-page4" class="nav-link" data-toggle="tab">
-                                        <img src="{{ $event[0]->pictures[2]->picture }}">
-                                    </a>
-                                </li>
+                                @php $i = 2; @endphp
+                                @foreach($event->pictures as $picture)
+                                    <li class="nav-item">
+                                        <a href="#product-page@php echo $i; @endphp" class="nav-link" data-toggle="tab">
+                                            <img src="{{ $picture->picture }}">
+                                        </a>
+                                    </li>
+                                    @php $i++; @endphp
+                                @endforeach
                             </ul>
                         </div>
-
                     </div>
                     <div class="col-md-7 col-sm-7">
                         <h3 class="title">
-                            {{ $event[0]->event_title }}
-                            <small class="pro-badge">({{ $event[0]->type_name }})</small>
+                            {{ $event->event_title }}
+                            <small class="pro-badge">({{ $event->type_name }})</small>
                         </h3>
                         <!--h3 class="main-price">$335</h3-->
                         <div id="accordion" role="tablist">
@@ -81,24 +72,24 @@
                                 <!--collapse show-->
                                 <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
                                     <div class="card-body" >
-                                        <p>{{ $event[0]->event_desc }}.</p>
+                                        <p>{{ $event->event_desc }}.</p>
 
-                                        @foreach($event[0]->elements as $element)
-                                        <div class="form-group row">
-                                            <div class="input-group col-12">
-                                                <li>
-                                                    <a href="javascript:void(0)">{{ $element->element_date }}  -  {{ $element->element_title }}</a>
-                                                    <ul>
-                                                        @foreach($element->items as $item)
-                                                            <li>{{ $item->item_start }} à {{ $item->item_end }} -> <a href="javascript:void(0)">{{ $item->item_title }}</a></li>
-                                                            @php
-                                                                //dump($item->item_title);
-                                                            @endphp
-                                                        @endforeach
-                                                    </ul>
-                                                </li>
+                                        @foreach($event->elements as $element)
+                                            <div class="form-group row">
+                                                <div class="input-group col-12">
+                                                    <li>
+                                                        <a href="javascript:void(0)">{{ $element->element_date }}  -  {{ $element->element_title }}</a>
+                                                        <ul>
+                                                            @foreach($element->items as $item)
+                                                                <li>{{ $item->item_start }} à {{ $item->item_end }} -> <a href="javascript:void(0)">{{ $item->item_title }}</a></li>
+                                                                @php
+                                                                    //dump($item->item_title);
+                                                                @endphp
+                                                            @endforeach
+                                                        </ul>
+                                                    </li>
+                                                </div>
                                             </div>
-                                        </div>
                                         @endforeach
                                     </div>
                                 </div>
@@ -115,7 +106,7 @@
                                 <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo" data-parent="#accordion">
                                     <div class="card-body" style="list-style-type: none;">
                                         <!--ul style="list-style-type: none;"-->
-                                        @if(strlen($event[0]->event_location) <= 36 && strlen($event[0]->city_name) <= 22)
+                                        @if(strlen($event->event_location) <= 36 && strlen($event->city_name) <= 22)
                                             <div class="form-group row ">
                                                 <div class="input-group col-6">
                                                     <div class="input-group-prepend">
@@ -123,7 +114,7 @@
                                                             <i class="fa fa-calendar-check-o"></i>
                                                         </span>
                                                     </div>
-                                                    <li>{{ $event[0]->date }}</li>
+                                                    <li>{{ $event->date }}</li>
                                                 </div>
                                                 <div class="input-group col-6">
                                                     <div class="input-group-prepend">
@@ -131,7 +122,7 @@
                                                             <i class="fa fa-clock-o"></i>
                                                         </span>
                                                     </div>
-                                                    <li>{{ $event[0]->time }}</li>
+                                                    <li>{{ $event->time }}</li>
                                                 </div>
                                             </div>
                                             <div class="form-group row ">
@@ -141,7 +132,7 @@
                                                             <i class="fa fa-map-o"></i>
                                                         </span>
                                                     </div>
-                                                    <li>{{ $event[0]->event_location }}</li>
+                                                    <li>{{ $event->event_location }}</li>
                                                 </div>
                                                 <div class="input-group col-5">
                                                     <div class="input-group-prepend">
@@ -149,7 +140,7 @@
                                                             <i class="fa fa-map-marker"></i>
                                                         </span>
                                                     </div>
-                                                    <li>{{ $event[0]->city_name }}</li>
+                                                    <li>{{ $event->city_name }}</li>
                                                 </div>
                                             </div>
                                         @else
@@ -160,7 +151,7 @@
                                                             <i class="fa fa-calendar-check-o"></i>
                                                         </span>
                                                     </div>
-                                                    <li>{{ $event[0]->start }}</li>
+                                                    <li>{{ $event->start }}</li>
                                                 </div>
                                                 <div class="input-group col-6">
                                                     <div class="input-group-prepend">
@@ -168,7 +159,7 @@
                                                             <i class="fa fa-map-marker"></i>
                                                         </span>
                                                     </div>
-                                                    <li>{{ $event[0]->city_name }}</li>
+                                                    <li>{{ $event->city_name }}</li>
                                                 </div>
                                             </div>
                                             <div class="form-group row text-center">
@@ -178,11 +169,11 @@
                                                             <i class="fa fa-map-o"></i>
                                                         </span>
                                                     </div>
-                                                    <li>{{ $event[0]->event_location }}</li>
+                                                    <li>{{ $event->event_location }}</li>
                                                 </div>
                                             </div>
-                                        @endif
-                                        <!--/ul-->
+                                    @endif
+                                    <!--/ul-->
                                     </div>
                                 </div>
                             </div>
@@ -205,7 +196,7 @@
                                                         <i class="fa fa-phone"></i>
                                                     </span>
                                                 </div>
-                                                <li><a href="tel:{{ $event[0]->option[0]->phone0 }}" title="Click to call">{{ $event[0]->option[0]->phone0 }}</a></li>
+                                                <li><a href="tel:{{ $event->option[0]->phone0 }}" title="Click to call">{{ $event->option[0]->phone0 }}</a></li>
                                             </div>
                                             <div class="input-group col-6">
                                                 <div class="input-group-prepend">
@@ -213,7 +204,7 @@
                                                         <i class="fa fa-phone"></i>
                                                     </span>
                                                 </div>
-                                                <li><a href="tel:{{ $event[0]->option[0]->phone1 }}" title="Click to call">{{ $event[0]->option[0]->phone1 }}</a></li>
+                                                <li><a href="tel:{{ $event->option[0]->phone1 }}" title="Click to call">{{ $event->option[0]->phone1 }}</a></li>
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -223,7 +214,7 @@
                                                         <i class="fa fa-phone"></i>
                                                     </span>
                                                 </div>
-                                                <li><a href="tel:{{ $event[0]->option[0]->phone2 }}" title="Click to call">{{ $event[0]->option[0]->phone2 }}</a></li>
+                                                <li><a href="tel:{{ $event->option[0]->phone2 }}" title="Click to call">{{ $event->option[0]->phone2 }}</a></li>
                                             </div>
                                         </div>
                                         <!--Begin Phone Number-->
@@ -236,7 +227,7 @@
                                                             <i class="fa fa-facebook-f"></i>
                                                         </span>
                                                 </div>
-                                                <li><a href="{{ $event[0]->option[0]->link0 }}" title="Facebook Page">{{ $event[0]->option[0]->link0 }}</a></li>
+                                                <li><a href="{{ $event->option[0]->link0 }}" title="Facebook Page">{{ $event->option[0]->link0 }}</a></li>
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -246,7 +237,7 @@
                                                             <i class="fa fa-instagram"></i>
                                                         </span>
                                                 </div>
-                                                <li><a href="{{ $event[0]->option[0]->link1 }}" title="Instagram Page">{{ $event[0]->option[0]->link1 }}</a></li>
+                                                <li><a href="{{ $event->option[0]->link1 }}" title="Instagram Page">{{ $event->option[0]->link1 }}</a></li>
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -256,7 +247,7 @@
                                                             <i class="fa fa-link"></i>
                                                         </span>
                                                 </div>
-                                                <li><a href="{{ $event[0]->option[0]->link2 }}" title="Web Site">{{ $event[0]->option[0]->link2 }}</a></li>
+                                                <li><a href="{{ $event->option[0]->link2 }}" title="Web Site">{{ $event->option[0]->link2 }}</a></li>
                                             </div>
                                         </div>
                                         <!--End Link URL-->
@@ -287,7 +278,7 @@
                         </div>
                     </div>
                     @php
-                        dump(csrf_token ());
+                        //dump($event->pictures);
                         //dump($event[0]->elements[0]->items);
                         //dump($suggestions);
                     @endphp

@@ -140,7 +140,7 @@ class EventController extends Controller
     public static function suggestion($data)
     {
         $eDao = new EventDao();
-        $suggestions = $eDao->getByType($data);
+        $suggestions = $eDao->suggestion($data);
         foreach ($suggestions as $suggestion){
             $suggestion->event_image = 'files/events/' . $suggestion->event_image;
             $suggestion->event_start = date('d M Y H\h : i', $suggestion->event_start);

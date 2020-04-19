@@ -2,6 +2,7 @@
 
 use App\Category;
 use App\Event;
+use App\Http\Middleware\AuthEvenma;
 use App\Product;
 use App\Type;
 use Illuminate\Support\Facades\Route;
@@ -18,9 +19,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/welcome', function (){
+    //dd (session ('users.profile'));
     $class = 'index-page sidebar-collapse';
     return view ('welcome',compact ('class'));
-});
+})->middleware ('auth.admin');
+
 Route::get('/', 'UI\UIController@home')->name ('home');
 
 Auth::routes(['verify' => true]);
@@ -28,28 +31,26 @@ Auth::routes(['verify' => true]);
 //Route::get('/home', 'HomeController@index')->name('home');
 
 //UI
-Route::get('/types', 'UI\UIController@type')
-    ->name('type')
-    ->middleware ('auth.app');
-Route::get('/cities', 'UI\UIController@city')
-    ->name('city')
-    ->middleware ('auth.app');
+Route::middleware([AuthEvenma::class])->group(function () {
+    Route::get('/types', 'UI\UIController@type')
+        ->name('type')->middleware ('auth.admin');
+    Route::get('/cities', 'UI\UIController@city')
+        ->name('city')->middleware ('auth.admin');
+    Route::get('/profile', 'UI\UIController@profile')->name('profile');
+    Route::get('/add', 'UI\UIController@add')->name('add');
+    Route::get('/edit', 'UI\UIController@edit')->name('edit');
+    Route::get('/ui/edit/init', 'UI\UIController@edit');
+});
+
+    //->middleware ('auth.app');
+
 Route::get('/login', 'UI\UIController@login')->name('login');
 Route::get('/register', 'UI\UIController@register')->name('register');
 Route::get('/about', 'UI\UIController@about')->name('about');
 Route::get('/contact', 'UI\UIController@contact')->name('contact');
-Route::get('/profile', 'UI\UIController@profile')
-    ->name('profile')
-    ->middleware ('auth.app');
+
 Route::get('/details', 'UI\UIController@details')->name('details');
-Route::get('/add', 'UI\UIController@add')
-    ->name('add')
-    ->middleware ('auth.app');
-Route::get('/edit', 'UI\UIController@edit')
-    ->name('edit')
-    ->middleware ('auth');
-Route::get('/ui/edit/init', 'UI\UIController@edit')
-    ->middleware ('auth.app');
+
 Route::get('/home', 'UI\UIController@home');
 Route::get('/ui/conditions/init', 'UI\UIController@conditions');
 
@@ -64,28 +65,49 @@ Route::post('/auth/register', 'UserController@register');
 //EVENTS
 Route::get('/events/all', 'EventController@all');
 Route::get('/events/get', 'EventController@get');
-Route::post('/events/delete', 'EventController@delete');
-Route::post('/events/publish', 'EventController@publish');
-Route::post('/events/add', 'EventController@add');
-Route::post('/events/edit', 'EventController@edit');
-Route::get('/events/publish/last', 'EventController@last');
-Route::get('/events/stats', 'EventController@stats');
+
+Route::middleware([AuthEvenma::class])->group(function () {
+    Route::post('/events/delete', 'EventController@delete')
+        ->name ('event.delete')->middleware ('auth.admin');
+    Route::post('/events/publish', 'EventController@publish')
+        ->name ('event.publish')->middleware ('auth.admin');
+    Route::post('/events/add', 'EventController@add')
+        ->name ('event.add')->middleware ('auth.admin');
+    Route::post('/events/edit', 'EventController@edit')
+        ->name ('event.edit')->middleware ('auth.admin');
+    Route::get('/events/publish/last', 'EventController@last')
+        ->name ('event.last')->middleware ('auth.admin');
+    Route::get('/events/stats', 'EventController@stats')
+        ->name ('event.stats')->middleware ('auth.admin');
+
+    Route::get('/views/add', 'ViewController@add')
+        ->name ('view.add')->middleware ('auth.admin');
+});
 //Views
-Route::get('/views/add', 'ViewController@add');
+
 
 //Cities
-Route::get('/cities/get','CityController@get');
-Route::get('/cities/all','CityController@all');
-Route::post('/cities/add','CityController@add');
-Route::post('/cities/edit','CityController@edit');
-Route::get('/cities/delete','CityController@delete');
+Route::get('/cities/get','CityController@get')->name ('city.get');
+Route::get('/cities/all','CityController@all')->name ('city.all');
+Route::middleware([AuthEvenma::class])->group(function () {
+    Route::post('/cities/add','CityController@add')
+        ->name ('city.add')->middleware ('auth.admin');
+    Route::post('/cities/edit','CityController@edit')
+        ->name ('city.edit')->middleware ('auth.admin');
+    Route::get('/cities/delete','CityController@delete')
+        ->name ('city.delete')->middleware ('auth.admin');
+});
 
+Route::middleware([AuthEvenma::class])->group(function () {
+    Route::get('/types/get','TypeController@get')
+        ->name ('type.get');
+    Route::post('/types/add','TypeController@add')->name ('type.add');
+    Route::post('/types/edit','TypeController@edit')->name ('type.edit');
+    Route::get('/types/delete','TypeController@delete')->name ('type.delete');
+});
 //Types
-Route::get('/types/get','TypeController@get');
+
 Route::get('/types/all','TypeController@all');
-Route::post('/types/add','TypeController@add');
-Route::post('/types/edit','TypeController@edit');
-Route::get('/types/delete','TypeController@delete');
 
 //Contact
 Route::post('/contact/add','ContactController@add')->name('contact-add');
@@ -121,9 +143,9 @@ Route::get('/test1','EventController@test');
 Route::get('count', 'EventController@countEvent');
 
 //ADMIN
-Route::get('/publishEvent','EventController@publishEvent')
-    ->name('publishEvent')
-    ->middleware ('auth.app');
-Route::get('/waitingEvent','EventController@waitingEvent')
-    ->name('waitingEvent')
-    ->middleware ('auth.app');
+Route::middleware([AuthEvenma::class])->group(function () {
+    Route::get('/publishEvent','EventController@publishEvent')->name('publishEvent');
+    Route::get('/waitingEvent','EventController@waitingEvent')->name('waitingEvent');
+});
+
+

@@ -23,4 +23,8 @@ class Element extends Model
     public function events(){
         return $this->belongsTo (Event::class,'events_id');
     }
+
+    public function items(){
+        return $this->hasMany (Item::class,'elements_id');
+    }
 }

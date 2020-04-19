@@ -15,7 +15,7 @@ class PictureSeeder extends Seeder
         for ($i = 1; $i <= 39; $i++){
             Picture::create([
                 'events_id' => $i,
-                'picture_url' => 'card-blog1.jpg',
+                'picture_url' => 'color5.jpg',
                 'picture_created' => time(),
                 'picture_updated' => time(),
             ]);

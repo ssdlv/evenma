@@ -157,7 +157,7 @@
             ];
             //dd ($event, $data);
             $suggestions = EventController::suggestion($data);
-            dd ($suggestions);
+            //dd ($suggestions);
             $class = 'product-page sidebar-collapse';
             if ($request->ajax()){
                 return response()->json(['event','class','suggestions']);

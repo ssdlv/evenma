@@ -28,17 +28,28 @@ Auth::routes(['verify' => true]);
 //Route::get('/home', 'HomeController@index')->name('home');
 
 //UI
-Route::get('/types', 'UI\UIController@type')->name('type');
-Route::get('/cities', 'UI\UIController@city')->name('city');
+Route::get('/types', 'UI\UIController@type')
+    ->name('type')
+    ->middleware ('auth.app');
+Route::get('/cities', 'UI\UIController@city')
+    ->name('city')
+    ->middleware ('auth.app');
 Route::get('/login', 'UI\UIController@login')->name('login');
 Route::get('/register', 'UI\UIController@register')->name('register');
 Route::get('/about', 'UI\UIController@about')->name('about');
 Route::get('/contact', 'UI\UIController@contact')->name('contact');
-Route::get('/profile', 'UI\UIController@profile')->name('profile');
+Route::get('/profile', 'UI\UIController@profile')
+    ->name('profile')
+    ->middleware ('auth.app');
 Route::get('/details', 'UI\UIController@details')->name('details');
-Route::get('/add', 'UI\UIController@add')->name('add');
-Route::get('/edit', 'UI\UIController@edit')->name('edit');
-Route::get('/ui/edit/init', 'UI\UIController@edit');
+Route::get('/add', 'UI\UIController@add')
+    ->name('add')
+    ->middleware ('auth.app');
+Route::get('/edit', 'UI\UIController@edit')
+    ->name('edit')
+    ->middleware ('auth');
+Route::get('/ui/edit/init', 'UI\UIController@edit')
+    ->middleware ('auth.app');
 Route::get('/home', 'UI\UIController@home');
 Route::get('/ui/conditions/init', 'UI\UIController@conditions');
 
@@ -110,5 +121,9 @@ Route::get('/test1','EventController@test');
 Route::get('count', 'EventController@countEvent');
 
 //ADMIN
-Route::get('/publishEvent','EventController@publishEvent')->name('publishEvent');
-Route::get('/waitingEvent','EventController@waitingEvent')->name('waitingEvent');
+Route::get('/publishEvent','EventController@publishEvent')
+    ->name('publishEvent')
+    ->middleware ('auth.app');
+Route::get('/waitingEvent','EventController@waitingEvent')
+    ->name('waitingEvent')
+    ->middleware ('auth.app');

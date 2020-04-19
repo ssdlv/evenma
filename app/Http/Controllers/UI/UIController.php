@@ -18,6 +18,7 @@
     use App\Http\Controllers\OptionController;
     use App\Http\Controllers\TypeController;
     use App\Http\Controllers\ViewController;
+    use App\Http\Middleware\AuthEvenma;
     use App\Services\EvenmaService;
     use App\Type;
     use Illuminate\Http\Request;
@@ -86,26 +87,9 @@
         }
         public function home()
         {
-            /*for ($i = 1; $i <= 30; $i++){
-                for ($j = 1; $j <= 3; $j++){
-                    echo "[$i][$j]</br>";
-                }
-            }
-            die();*/
-            /*$eDao = new EventDao();
-            $data = null;
-            $events = $eDao->getAll($data);
-            foreach ($events as $event){
-                $event->event_start = date('d M Y H\h : i', $event->event_start);
-                if (strlen($event->event_desc) > 50){
-                    $event->event_desc = substr($event->event_desc, 0, 50).'...';
-                }
-            }
-            dd($events);*/
             $events  = null;
             $class = 'index-page sidebar-collapse';
             return view('pages.cli.home', compact('events', 'class'));
-            //return view('welcome');
         }
         public function details(Request $request)
         {
@@ -138,7 +122,7 @@
             $event->option = $event->options;
             ##Suggestions
             $data = [
-                'limit' => 30,
+                'limit' => 3,
                 'type' => $event->types_id,
                 'city' => $event->cities_id,
                 'current' => $event->id,

@@ -109,29 +109,18 @@
         }
         public function details(Request $request)
         {
-            $eDao = new EventDao();
-            $pDao = new PictureDao();
-            $elDao = new ElementDao();
-            $iDao = new ItemDao();
-            //$event = $eDao->get($request->get('event'));
-            //var_dump ($event);
             $event = Event::find($request->get('event'));
-            $event0 = Event::find($request->get('event'));
-            //dd ($event0);
-            /*$event0->type = $event0->type;
-            $event0->pictures = $event0->pictures;
-            dd ($event, $event0->options);*/
 
             $event->time = date('h\h : i', $event->event_start);
             $event->date = date('Y-m-d', $event->event_start);
             $event->start = date('d M Y \à H\h : i', $event->event_start);
             $event->picture = 'files/events/' . $event->event_image;
             ##Elements
-            $elements = $event->elements;//$elDao->getByEvent ($event->id);
+            $elements = $event->elements;
             foreach ($elements as $element){
                 $element->element_date = date('d-m-Y', $element->element_date);
                 ##Load Items
-                $items = $element->items;//$iDao->getByElement ($element->id);
+                $items = $element->items;
                 foreach ($items as $item){
                     $item->item_start = date('h\h : i', $item->item_start);
                     $item->item_end = date('h\h : i', $item->item_end);
@@ -140,14 +129,13 @@
             }
             $event->elements = $elements;
             ##Pictures
-            $pictures = $event->pictures;//$pDao->getByEvent($event[0]->event_id);
+            $pictures = $event->pictures;
             foreach ($pictures as $picture){
                 $picture->picture = 'files/events/' . $picture->picture_url;
             }
             $event->pictures = $pictures;
             ##Options
-            $event->option = $event->options;//(new OptionController)->get(null,$event[0]->event_id);
-            //dd($event);
+            $event->option = $event->options;
             ##Suggestions
             $data = [
                 'limit' => 30,
@@ -155,9 +143,7 @@
                 'city' => $event->cities_id,
                 'current' => $event->id,
             ];
-            //dd ($event, $data);
             $suggestions = EventController::suggestion($data);
-            //dd ($suggestions);
             $class = 'product-page sidebar-collapse';
             if ($request->ajax()){
                 return response()->json(['event','class','suggestions']);
@@ -182,7 +168,6 @@
                     $active = '';
                     $cities = CityController::all($request);
                     $types = TypeController::all($request);
-                    //dd($types);
                     return view('pages.admin.event.added', compact(['title','cities','types','active']));
                 }
             }
@@ -196,7 +181,7 @@
                 $eDao = new EventDao();
                 $pDao = new PictureDao();
                 $eService = new EvenmaService();
-                $id = $request->get('id');
+                $id = $request->get('event');
                 $result = $eDao->get($id);
                 $result->date = date('Y-m-d', $result[0]->event_start);
                 $result->time = date('h:m', $result[0]->event_start);
@@ -224,17 +209,7 @@
         public function city()
         {
             if (session()->has('users') && session('users.profile') == 'admin'){
-                $cDao = new CityDao();
-                $cities = $cDao->getAll();
-                foreach ($cities as $city){
-                    $city->city_created = date('d M Y H\h : i', $city->city_created);
-                    $city->city_updated = date('d M Y H\h : i', $city->city_updated);
-                    $city->city_using = Event::all()
-                        ->where('delete','=',0)
-                        ->where('event_state','=',1)
-                        ->where('cities_id','=', $city->id)
-                        ->count();
-                }
+                $cities = CityController::list ();
                 $title = 'Cities'; $active = 'active';
                 return view('pages.admin.city', compact(['cities', 'title', 'active']));
             }
@@ -245,17 +220,7 @@
         public function type()
         {
             if (session()->has('users') && session('users.profile') == 'admin'){
-                $tDao = new TypeDao();
-                $types = $tDao->getAll();
-                foreach ($types as $type){
-                    $type->type_created = date('d M Y H\h : i', $type->type_created);
-                    $type->type_updated = date('d M Y H\h : i', $type->type_updated);
-                    $type->type_using = Event::all()
-                        ->where('delete','=',0)
-                        ->where('event_state','=',1)
-                        ->where('types_id','=', $type->id)
-                        ->count();
-                }
+                $types = TypeController::list ();
                 $title = 'Types'; $active = 'active';
                 return view('pages.admin.type', compact(['types', 'title', 'active']));
             }

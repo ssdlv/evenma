@@ -34,7 +34,7 @@ class TeamController extends Controller
         $results = $tDao->all($data);
         dd($results);
     }
-    public function desactive(Request $request)
+    public function disable()
     {
         $tDao = new TeamDao();
         $data = [

@@ -11,4 +11,8 @@ class City extends Model
     protected $fillable = [
         'id', 'city_name', 'city_created', 'city_updated', 'city_status', 'delete'
     ];
+
+    public function events(){
+        return $this->hasMany (Event::class,'cities_id');
+    }
 }

@@ -21,4 +21,10 @@ class Notification extends Model
             'title', 'content', 'to', 'from',
             'date_send', 'date_read', 'delete',
         ];
+    public function to(){
+        return $this->belongsTo (User::class,'to');
+    }
+    public function from(){
+        return $this->belongsTo (User::class,'from');
+    }
 }

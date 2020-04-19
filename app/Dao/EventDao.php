@@ -125,7 +125,7 @@ class EventDao
      */
     public function get($id)
     {
-        $event = DB::table('events')
+        return DB::table('events')
             ->select(
                 'events.id as event_id','event_title','event_desc',
                 'event_start','event_image','event_location','event_date',
@@ -139,7 +139,6 @@ class EventDao
             ->join('cities','events.cities_id','=','cities.id')
             //->join('pictures','pictures.events_id','=','pictures.id')
             ->get();
-        return $event;
     }
 
 

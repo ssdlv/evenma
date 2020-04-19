@@ -19,4 +19,8 @@ class Element extends Model
         'id', 'element_title', 'element_date', 'element_status'
         ,'element_created', 'element_updated', 'events_id'
     ];
+
+    public function events(){
+        return $this->belongsTo (Event::class,'events_id');
+    }
 }

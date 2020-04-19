@@ -56,14 +56,14 @@
                     <div class="col-md-7 col-sm-7">
                         <h3 class="title">
                             {{ $event->event_title }}
-                            <small class="pro-badge">({{ $event->type_name }})</small>
+                            <small class="pro-badge">({{ $event->type->type_name }})</small>
                         </h3>
                         <!--h3 class="main-price">$335</h3-->
                         <div id="accordion" role="tablist">
                             <div class="card card-collapse">
                                 <div class="card-header" role="tab" id="headingOne">
                                     <h5 class="mb-0">
-                                        <a data-toggle="collapse" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                        <a data-toggle="collapse" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                                             Description
                                             <i class="material-icons">keyboard_arrow_down</i>
                                         </a>
@@ -97,7 +97,7 @@
                             <div class="card card-collapse">
                                 <div class="card-header" role="tab" id="headingTwo">
                                     <h5 class="mb-0">
-                                        <a class="collapsed" data-toggle="collapse" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                                        <a class="collapsed" data-toggle="collapse" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                                             Time And Location
                                             <i class="material-icons">keyboard_arrow_down</i>
                                         </a>
@@ -140,7 +140,7 @@
                                                             <i class="fa fa-map-marker"></i>
                                                         </span>
                                                     </div>
-                                                    <li>{{ $event->city_name }}</li>
+                                                    <li>{{ $event->city->city_name }}</li>
                                                 </div>
                                             </div>
                                         @else
@@ -159,7 +159,7 @@
                                                             <i class="fa fa-map-marker"></i>
                                                         </span>
                                                     </div>
-                                                    <li>{{ $event->city_name }}</li>
+                                                    <li>{{ $event->city->city_name }}</li>
                                                 </div>
                                             </div>
                                             <div class="form-group row text-center">

@@ -99,11 +99,13 @@ Route::middleware([AuthEvenma::class])->group(function () {
 });
 
 Route::middleware([AuthEvenma::class])->group(function () {
-    Route::get('/types/get','TypeController@get')
-        ->name ('type.get');
-    Route::post('/types/add','TypeController@add')->name ('type.add');
-    Route::post('/types/edit','TypeController@edit')->name ('type.edit');
-    Route::get('/types/delete','TypeController@delete')->name ('type.delete');
+    Route::get('/types/get','TypeController@get')->name ('type.get');
+    Route::post('/types/add','TypeController@add')
+        ->name ('type.add')->middleware ('auth.admin');
+    Route::post('/types/edit','TypeController@edit')
+        ->name ('type.edit')->middleware ('auth.admin');
+    Route::get('/types/delete','TypeController@delete')
+        ->name ('type.delete')->middleware ('auth.admin');
 });
 //Types
 

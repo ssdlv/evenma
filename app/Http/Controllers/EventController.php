@@ -143,7 +143,7 @@ class EventController extends Controller
         $suggestions = $eDao->suggestion($data);
         foreach ($suggestions as $suggestion){
             $suggestion->event_image = 'files/events/' . $suggestion->event_image;
-            $suggestion->event_start = date('d M Y H\h : i', $suggestion->event_start);
+            $suggestion->event_start = date('d M Y \à H\h : i', $suggestion->event_start);
             if (strlen($suggestion->event_desc) > 148){
                 $suggestion->event_desc = substr($suggestion->event_desc, 0, 148).'...';
             }

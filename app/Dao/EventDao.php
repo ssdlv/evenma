@@ -401,14 +401,15 @@ class EventDao
      * @param $data
      * @return Collection
      */
-    public function getByType($data)
+    public function suggestion($data)
     {
-        $events = DB::table('events')
+        return DB::table('events')
             ->select(self::$select)
             ->where([
                 ['events.delete','=',false],
                 ['events.id','<>',$data['current']],
                 ['events.types_id','=',$data['type']],
+                ['events.cities_id','=',$data['city']],
             ])
             ->join('types','events.types_id','=','types.id')
             ->join('cities','events.cities_id','=','cities.id')
@@ -416,7 +417,6 @@ class EventDao
             ->limit($data['limit'])
             //->paginate(5);
             ->get();
-        return $events;
     }
 
     /**

@@ -18,6 +18,7 @@
     use App\Http\Controllers\OptionController;
     use App\Http\Controllers\TypeController;
     use App\Http\Controllers\ViewController;
+    use App\Http\Middleware\AuthEvenma;
     use App\Services\EvenmaService;
     use App\Type;
     use Illuminate\Http\Request;
@@ -61,6 +62,7 @@
                 foreach ($event_publish as $item){
                     $item->event_image = '/files/events/' . $item->event_image;
                 }
+                //dd($event_publish);
                 $event_not_publish = $eDao->getByUser($data0);
                 $not_publish_count = $event_not_publish->count();
 
@@ -86,73 +88,48 @@
         }
         public function home()
         {
-            /*for ($i = 1; $i <= 30; $i++){
-                for ($j = 1; $j <= 3; $j++){
-                    echo "[$i][$j]</br>";
-                }
-            }
-            die();*/
-            /*$eDao = new EventDao();
-            $data = null;
-            $events = $eDao->getAll($data);
-            foreach ($events as $event){
-                $event->event_start = date('d M Y H\h : i', $event->event_start);
-                if (strlen($event->event_desc) > 50){
-                    $event->event_desc = substr($event->event_desc, 0, 50).'...';
-                }
-            }
-            dd($events);*/
             $events  = null;
             $class = 'index-page sidebar-collapse';
             return view('pages.cli.home', compact('events', 'class'));
-            //return view('welcome');
         }
         public function details(Request $request)
         {
-            $eDao = new EventDao();
-            $pDao = new PictureDao();
-            $elDao = new ElementDao();
-            $iDao = new ItemDao();
-            $event = $eDao->get($request->get('event'));
-            //var_dump ($event);
-            $event0 = Event::find(1);
-            $event0->type = $event0->type;
-            $event0->pictures = $event0->pictures;
-            dd ($event, $event0->options);
+            $event = Event::find($request->get('event'));
 
-            $event[0]->time = date('h\h : i', $event0->event_start);
-            $event[0]->date = date('Y-m-d', $event0->event_start);
-            $event[0]->start = date('d M Y \à H\h : i', $event0->event_start);
-            $event[0]->picture = 'files/events/' . $event0->event_image;
+            $event->time = date('h\h : i', $event->event_start);
+            $event->date = date('Y-m-d', $event->event_start);
+            $event->start = date('d M Y \à H\h : i', $event->event_start);
+            $event->picture = 'files/events/' . $event->event_image;
             ##Elements
-            $elements = $elDao->getByEvent ($event0->id);
+            $elements = $event->elements;
             foreach ($elements as $element){
                 $element->element_date = date('d-m-Y', $element->element_date);
                 ##Load Items
-                $items = $iDao->getByElement ($element->id);
+                $items = $element->items;
                 foreach ($items as $item){
                     $item->item_start = date('h\h : i', $item->item_start);
                     $item->item_end = date('h\h : i', $item->item_end);
                 }
                 $element->items = $items;
             }
-            $event[0]->elements = $elements;
+            $event->elements = $elements;
             ##Pictures
-            //$pictures = $pDao->getByEvent($event[0]->event_id);
-            foreach ($event0->pictures as $picture){
+            $pictures = $event->pictures;
+            foreach ($pictures as $picture){
                 $picture->picture = 'files/events/' . $picture->picture_url;
             }
-            $event[0]->pictures = $event0->pictures;
+            $event->pictures = $pictures;
             ##Options
-            $event[0]->option = (new OptionController)->get(null,$event[0]->event_id);
-            //dd($event);
+            $event->option = $event->options;
             ##Suggestions
             $data = [
                 'limit' => 3,
-                'type' => $event[0]->types_id,
-                'current' => $event[0]->event_id,
+                'type' => $event->types_id,
+                'city' => $event->cities_id,
+                'current' => $event->id,
             ];
             $suggestions = EventController::suggestion($data);
+            //dd ($event->type);
             $class = 'product-page sidebar-collapse';
             if ($request->ajax()){
                 return response()->json(['event','class','suggestions']);
@@ -177,7 +154,6 @@
                     $active = '';
                     $cities = CityController::all($request);
                     $types = TypeController::all($request);
-                    //dd($types);
                     return view('pages.admin.event.added', compact(['title','cities','types','active']));
                 }
             }
@@ -191,10 +167,11 @@
                 $eDao = new EventDao();
                 $pDao = new PictureDao();
                 $eService = new EvenmaService();
-                $id = $request->get('id');
+                $id = $request->get('event');
                 $result = $eDao->get($id);
                 $result->date = date('Y-m-d', $result[0]->event_start);
                 $result->time = date('h:m', $result[0]->event_start);
+                $result[0]->event_start = date('d M Y H\h : i', $result[0]->event_start);
                 //dd($result);
                 $pictures = $pDao->getByEvent($id);
                 foreach ($pictures as $picture)
@@ -203,10 +180,10 @@
                 }
                 $result[0]->pictures = $pictures;
                 $result[0]->picture0 = $eService->encodeBase64($result[0]->event_image);
-                //dd($result[0]);
+                //dd($result);
                 $title = 'Edit Event';
-                $cities = CityController::all($request);
-                $types = TypeController::all($request);
+                $cities = (new CityController())->all($request);
+                $types = (new TypeController())->all($request);
                 //dd($types);
                 return view('pages.admin.event.edit', compact(['title','cities','types','result']));
             }
@@ -219,17 +196,7 @@
         public function city()
         {
             if (session()->has('users') && session('users.profile') == 'admin'){
-                $cDao = new CityDao();
-                $cities = $cDao->getAll();
-                foreach ($cities as $city){
-                    $city->city_created = date('d M Y H\h : i', $city->city_created);
-                    $city->city_updated = date('d M Y H\h : i', $city->city_updated);
-                    $city->city_using = Event::all()
-                        ->where('delete','=',0)
-                        ->where('event_state','=',1)
-                        ->where('cities_id','=', $city->id)
-                        ->count();
-                }
+                $cities = CityController::list ();
                 $title = 'Cities'; $active = 'active';
                 return view('pages.admin.city', compact(['cities', 'title', 'active']));
             }
@@ -240,17 +207,7 @@
         public function type()
         {
             if (session()->has('users') && session('users.profile') == 'admin'){
-                $tDao = new TypeDao();
-                $types = $tDao->getAll();
-                foreach ($types as $type){
-                    $type->type_created = date('d M Y H\h : i', $type->type_created);
-                    $type->type_updated = date('d M Y H\h : i', $type->type_updated);
-                    $type->type_using = Event::all()
-                        ->where('delete','=',0)
-                        ->where('event_state','=',1)
-                        ->where('types_id','=', $type->id)
-                        ->count();
-                }
+                $types = TypeController::list ();
                 $title = 'Types'; $active = 'active';
                 return view('pages.admin.type', compact(['types', 'title', 'active']));
             }

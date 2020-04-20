@@ -48,11 +48,19 @@ class TypeController extends Controller
         $data = $tDao->delete(['id' => $id]);
         return response()->json($data);
     }
-    public static function all(Request $request)
+    public function all(Request $request)
     {
+        $types = self::list ();
+        if ($request->ajax()){
+            return response()->json($types);
+        }else{
+            //dd($results);
+            return $types;
+        }
+    }
+    public static function list(){
         $tDao = new TypeDao();
         $types = $tDao->getAll();
-        //dd($results);
         foreach ($types as $type){
             $type->type_created = date('d M Y H\h : i', $type->type_created);
             $type->type_updated = date('d M Y H\h : i', $type->type_updated);
@@ -62,11 +70,6 @@ class TypeController extends Controller
                 ->where('types_id','=', $type->id)
                 ->count();
         }
-        if ($request->ajax()){
-            return response()->json($types);
-        }else{
-            //dd($results);
-            return $types;
-        }
+        return $types;
     }
 }

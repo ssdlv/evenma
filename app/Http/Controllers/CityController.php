@@ -49,9 +49,19 @@ class CityController extends Controller
         $data = $cDao->delete(['id' => $id]);
         return response()->json($data);
     }
-    public static function all(Request $request)
+    public function all(Request $request)
     {
         //P@ssW0rdssdlv
+        $cities = self::list ();
+        //dd($results);
+        if ($request->ajax()){
+            return response()->json($cities);
+        }else{
+            //dd($results);
+            return $cities;
+        }
+    }
+    public static function list(){
         $cDao = new CityDao();
         $cities = $cDao->getAll();
         foreach ($cities as $city){
@@ -63,12 +73,6 @@ class CityController extends Controller
                 ->where('cities_id','=', $city->id)
                 ->count();
         }
-        //dd($results);
-        if ($request->ajax()){
-            return response()->json($cities);
-        }else{
-            //dd($results);
-            return $cities;
-        }
+        return $cities;
     }
 }

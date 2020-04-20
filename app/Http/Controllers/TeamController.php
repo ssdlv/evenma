@@ -14,7 +14,6 @@ class TeamController extends Controller
         $data = [
             'status' => $request->get('status')
         ];
-        //dd($data);
         $results = $tDao->all($data);
         foreach ($results as $result){
             $result->avatar = 'files/team/' . $result->avatar;
@@ -22,7 +21,6 @@ class TeamController extends Controller
                 $result->speciality = $result->speciality .' / '.$result->founder;
             }
         }
-        //dd($results);
         return response()->json($results);
     }
     public function active(Request $request)
@@ -34,7 +32,7 @@ class TeamController extends Controller
         $results = $tDao->all($data);
         dd($results);
     }
-    public function desactive(Request $request)
+    public function disable()
     {
         $tDao = new TeamDao();
         $data = [

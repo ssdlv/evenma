@@ -20,4 +20,8 @@ class Item extends Model
         'id', 'item_title', 'item_start', 'item_end'
         ,'item_status','item_created', 'item_updated', 'elements_id'
     ];
+
+    public function elements(){
+        return $this->belongsTo (Item::class,'elements_id');
+    }
 }

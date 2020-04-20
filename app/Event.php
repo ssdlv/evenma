@@ -55,13 +55,13 @@ class Event extends Model
     }
     //1->*
     public function views(){
-        return $this->hasMany (Picture::class,'events_id');
+        return $this->hasMany (View::class,'events_id');
     }
     public function options(){
         return $this->hasMany (Option::class,'events_id');
     }
     public function pictures(){
-        return $this->hasMany (View::class,'events_id');
+        return $this->hasMany (Picture::class,'events_id');
     }
     public function elements(){
         return $this->hasMany (Element::class,'events_id');

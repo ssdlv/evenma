@@ -85,6 +85,12 @@ $(document).ready(function () {
         }
     });
 
+    $(function () {
+        let desc = $('#event-desc').val();
+        if (desc.length >= 148){
+            $('#event-desc').attr('rows','2')
+        }
+    });
 
 //Preview
     //preview type

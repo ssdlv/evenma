@@ -36,9 +36,10 @@ class Twilio extends Model
             );
             $call = $client->calls->create (
                 $data['to'],
-                env ('TWILIO_PHONE_FROM'),
+                '+15005550006',
+                //env ('TWILIO_CALL_FROM'),
                 [
-                    'url' => ''
+                    'url' => 'http://demo.twilio.com/docs/voice.xml'
                 ]
             );
             return $call;

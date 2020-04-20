@@ -183,6 +183,7 @@ class EventController extends Controller
             else{
                 $event_publish = $eDao->getByUser($data);
             }
+            //dd ($event_publish);
 
             foreach ($event_publish as $event){
                 $event->event_image = 'files/events/' . $event->event_image;
@@ -198,8 +199,9 @@ class EventController extends Controller
                 ]);
             }else{
                 //dd($event_publish);
-                $cities = CityController::all($request);
-                $types = TypeController::all($request);
+                $cities = (new CityController())->all ($request);
+                //$cities->all ();//CityController::all($request);
+                $types = (new TypeController())->all($request);
                 $class = 'active'; $title = 'Publish Events';
                 return view('pages.admin.event.publish-event', compact(['event_publish', 'cities', 'types', 'title', 'class']));
             }
@@ -241,8 +243,8 @@ class EventController extends Controller
                     'events' => $event_not_publish,
                 ]);
             }else{
-                $cities = CityController::all($request);
-                $types = TypeController::all($request);
+                $cities = (new CityController())->all($request);
+                $types = (new TypeController())->all($request);
                 $title = 'Waiting Events';
                 return view('pages.admin.event.waiting-event', compact(['event_not_publish', 'cities', 'types', 'title']));
             }

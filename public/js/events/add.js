@@ -6,6 +6,8 @@ $(document).ready(function () {
     });
 
 
+
+
 //Preview
     //preview type
     $(document).on('change', '#change-type', function () {
@@ -14,7 +16,7 @@ $(document).ready(function () {
     });
     //preview title
     $(document).on('keyup', '#event-title', function () {
-        var title = $('#event-title').val();
+        let title = $('#event-title').val();
         if (title === '') {
             $('#preview-title').text('Title');
         } else {
@@ -24,7 +26,7 @@ $(document).ready(function () {
     });
     //preview desc
     $(document).on('keyup', '#event-desc', function () {
-        var desc = $('#event-desc').val();
+        let desc = $('#event-desc').val();
         if (desc === '') {
             $('#preview-desc').text('Description');
         } else {

@@ -58,8 +58,9 @@ demoWaiting = {
                 confirmButtonText: 'Yes, update it!',
                 buttonsStyling: false
             }).then(function() {
-                var link = '/edit?id=' + data['id'];
+                let link = '/edit?event=' + data;
                 $(location).attr('href',link);
+                //alert(link);
                 //evenma.eventDelete(id);
                 /*swal({
                     title: 'Deleted!',
@@ -132,6 +133,9 @@ evenma = {
                         '\n' +
                         '                                <button onclick="location.href=\'/details?event='+value.event_id+'\'" type="button" class="btn btn-default btn-simple" rel="tooltip" data-placement="bottom" title="View">\n' +
                         '                                    <i class="material-icons">remove_red_eye</i>\n' +
+                        '                                </button>\n' +
+                        '                                <button data-id="'+value.event_id+'" type="button" class="btn btn-default btn-simple btn-edit" rel="tooltip" data-placement="bottom" title="Edit">\n' +
+                        '                                    <i class="material-icons">edit</i>\n' +
                         '                                </button>\n' +
                         '                                <button data-id="'+value.event_id+'" type="button" class="btn btn-success btn-simple btn-publish-event" rel="tooltip" data-placement="bottom" title="Publish">\n' +
                         '                                    <i class="material-icons">publish</i>\n' +
@@ -287,8 +291,9 @@ $(document).ready(function () {
 
     $(document).on('click', '.btn-edit', function (e) {
         e.preventDefault();
-        var id = $(this).data('id');
-        demoWaiting.showSwal('warning-edit-confirmation',null, id);
+        let id = $(this).data('id');
+        //alert(id);
+        demoWaiting.showSwal('warning-edit-confirmation', id);
         //evenma.eventGet(id);
         /*var link = '/edit?id=' + id;
         $(location).attr('href',link);*/

@@ -35,19 +35,21 @@
                             </div>
 
                             <h4 class="card-title">
-                                <a id="preview-title" href="javascript:void(0)">Office Studio</a>
+                                <a id="preview-title" href="javascript:void(0)">{{ $result[0]->event_title }}</a>
                             </h4>
-                            <div id="preview-desc" class="card-description">
-
-                                The place is close to Barceloneta Beach and bus stop just 2 min by walk and near to "Naviglio" where you can enjoy the main night life in Barcelona.
-                            </div>
+                            <div id="preview-desc" class="card-description">{{ $result[0]->event_desc }}</div>
                         </div>
                         <div class="card-footer">
-                            <div class="price">
-                                <h4 id="preview-start">$899/night</h4>
+                            <div class="stats pull-left">
+                                <!--h4 id="preview-date">$899/night</h4-->
+                                <p id="preview-date" class="category">
+                                    <i class="material-icons">room</i> {{ $result[0]->city_name }}
+                                </p>
                             </div>
                             <div class="stats pull-right">
-                                <p id="preview-location" class="category"><i class="material-icons">place</i> Barcelona, Spain</p>
+                                <p id="preview-time" class="category">
+                                    <i class="material-icons">alarm</i> {{ $result[0]->event_start }}
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -121,9 +123,14 @@
                                                         <span class="input-group-addon">
                                                             <i class="material-icons">email</i>
                                                         </span>
+                                                    <!--if (desc.length >= 50){
+                console.log(desc.length);
+                $('#event-desc').attr('rows','3')
+            }-->
                                                     <div class="form-group label-floating">
-                                                        <label class="control-label">Description <small>(required)</small></label>
-                                                        <input id="event-desc" name="event-desc" type="text" class="form-control" value="{{ $result[0]->event_desc }}">
+                                                        <label for="event-desc" class="control-label">Description <small>(required)</small></label>
+                                                        <!--input id="event-desc" name="event-desc" type="text" class="form-control"-->
+                                                        <textarea required class="form-control" rows="3" cols="40" id="event-desc" name="event-desc">{{ $result[0]->event_desc }}</textarea>
                                                     </div>
                                                 </div>
                                             </div>

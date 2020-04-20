@@ -64,7 +64,10 @@
                                                 <button type="button" class="btn btn-default btn-simple" rel="tooltip" data-placement="bottom" title="View">
                                                     <i class="material-icons">remove_red_eye</i>
                                                 </button>
-                                                <button data-id="{{ $event->event_id }}" type="button" class="btn btn-success btn-simple btn-publish-event" rel="tooltip" data-placement="bottom" title="Edit">
+                                                <button type="button" class="btn btn-default btn-simple btn-edit" rel="tooltip" data-placement="bottom" title="Edit">
+                                                    <i class="material-icons">edit</i>
+                                                </button>
+                                                <button data-id="{{ $event->event_id }}" type="button" class="btn btn-success btn-simple btn-publish-event" rel="tooltip" data-placement="bottom" title="Publish">
                                                     <i class="material-icons">publish</i>
                                                 </button>
                                                 <button data-id="{{ $event->event_id }}" type="button" class="btn btn-danger btn-simple btn-not-publish-event" rel="tooltip" data-placement="bottom" title="Remove">

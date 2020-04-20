@@ -62,6 +62,7 @@
                 foreach ($event_publish as $item){
                     $item->event_image = '/files/events/' . $item->event_image;
                 }
+                //dd($event_publish);
                 $event_not_publish = $eDao->getByUser($data0);
                 $not_publish_count = $event_not_publish->count();
 
@@ -170,6 +171,7 @@
                 $result = $eDao->get($id);
                 $result->date = date('Y-m-d', $result[0]->event_start);
                 $result->time = date('h:m', $result[0]->event_start);
+                $result[0]->event_start = date('d M Y H\h : i', $result[0]->event_start);
                 //dd($result);
                 $pictures = $pDao->getByEvent($id);
                 foreach ($pictures as $picture)
@@ -178,10 +180,10 @@
                 }
                 $result[0]->pictures = $pictures;
                 $result[0]->picture0 = $eService->encodeBase64($result[0]->event_image);
-                //dd($result[0]);
+                //dd($result);
                 $title = 'Edit Event';
-                $cities = CityController::all($request);
-                $types = TypeController::all($request);
+                $cities = (new CityController())->all($request);
+                $types = (new TypeController())->all($request);
                 //dd($types);
                 return view('pages.admin.event.edit', compact(['title','cities','types','result']));
             }

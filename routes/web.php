@@ -1,5 +1,9 @@
 <?php
 
+use App\Category;
+use App\Event;
+use App\Product;
+use App\Type;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -79,9 +83,24 @@ Route::get('/about/team/all','TeamController@all')->name('team-all');
 Route::get('/about/team/active','TeamController@active')->name('team-active');
 //E-Mails
 Route::get('/email',function (){
-    return view ('mails.confirm-mail')
+    $category = new Category();
+    //$category->name = "SmartPhone";
+    $category->setAttribute ('name','Laptop');
+    //$category->save ();
+
+    $product = new Product();
+    $product->name = "Iphone 8plus";
+    $product->price = 1200.00;
+    $product->category_id = 1;
+    $product->save ();
+    dd ($product);
+    $event = Event::find(1);
+
+    $type = Type::find(1);
+    dd ($event->type, $type->event);
+    /*return view ('mails.confirm-mail')
         ->with ('title','Title')
-        ->with ('url', env ('APP_URL'));
+        ->with ('url', env ('APP_URL'));*/
 });
 //Tasks
 Route::get('/tasks/run','TaskController@run');

@@ -42,4 +42,28 @@ class Event extends Model
         'image.required'=> 'Ce champs est obligatoire !',
         'location.required'=> 'Ce champs est obligatoire !',
     ];
+
+    //1->1
+    public function user(){
+        return $this->belongsTo (User::class,'users_id');
+    }
+    public function type(){
+        return $this->belongsTo (Type::class,'types_id');
+    }
+    public function city(){
+        return $this->belongsTo (City::class,'cities_id');
+    }
+    //1->*
+    public function views(){
+        return $this->hasMany (Picture::class,'events_id');
+    }
+    public function options(){
+        return $this->hasMany (Option::class,'events_id');
+    }
+    public function pictures(){
+        return $this->hasMany (View::class,'events_id');
+    }
+    public function elements(){
+        return $this->hasMany (Element::class,'events_id');
+    }
 }

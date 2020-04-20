@@ -114,13 +114,18 @@
             $elDao = new ElementDao();
             $iDao = new ItemDao();
             $event = $eDao->get($request->get('event'));
+            //var_dump ($event);
+            $event0 = Event::find(1);
+            $event0->type = $event0->type;
+            $event0->pictures = $event0->pictures;
+            dd ($event, $event0->options);
 
-            $event{0}->time = date('h\h : i', $event{0}->event_start);
-            $event{0}->date = date('Y-m-d', $event{0}->event_start);
-            $event{0}->start = date('d M Y \à H\h : i', $event{0}->event_start);
-            $event{0}->picture = 'files/events/' . $event{0}->event_image;
+            $event[0]->time = date('h\h : i', $event0->event_start);
+            $event[0]->date = date('Y-m-d', $event0->event_start);
+            $event[0]->start = date('d M Y \à H\h : i', $event0->event_start);
+            $event[0]->picture = 'files/events/' . $event0->event_image;
             ##Elements
-            $elements = $elDao->getByEvent ($event{0}->event_id);
+            $elements = $elDao->getByEvent ($event0->id);
             foreach ($elements as $element){
                 $element->element_date = date('d-m-Y', $element->element_date);
                 ##Load Items
@@ -131,21 +136,21 @@
                 }
                 $element->items = $items;
             }
-            $event{0}->elements = $elements;
+            $event[0]->elements = $elements;
             ##Pictures
-            $pictures = $pDao->getByEvent($event{0}->event_id);
-            foreach ($pictures as $picture){
+            //$pictures = $pDao->getByEvent($event[0]->event_id);
+            foreach ($event0->pictures as $picture){
                 $picture->picture = 'files/events/' . $picture->picture_url;
             }
-            $event{0}->pictures = $pictures;
+            $event[0]->pictures = $event0->pictures;
             ##Options
-            $event{0}->option = (new OptionController)->get(null,$event{0}->event_id);
+            $event[0]->option = (new OptionController)->get(null,$event[0]->event_id);
             //dd($event);
             ##Suggestions
             $data = [
                 'limit' => 3,
-                'type' => $event{0}->types_id,
-                'current' => $event{0}->event_id,
+                'type' => $event[0]->types_id,
+                'current' => $event[0]->event_id,
             ];
             $suggestions = EventController::suggestion($data);
             $class = 'product-page sidebar-collapse';

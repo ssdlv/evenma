@@ -28,4 +28,8 @@ class Picture extends Model
     ];
 
     public static $messages = [];
+
+    public function events(){
+        return $this->belongsTo (Event::class,'events_id');
+    }
 }

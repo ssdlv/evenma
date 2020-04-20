@@ -25,4 +25,8 @@ class Option extends Model
         ,'phone0','phone1','phone2'
         ,'link0','link1','link2','link3','link4'
     ];
+
+    public function events(){
+        return $this->belongsTo (Event::class,'events_id');
+    }
 }

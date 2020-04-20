@@ -137,3 +137,4 @@ Route::middleware([AuthEvenma::class])->group(function () {
 });
 
 
+Route::get ('twilio', 'TwilioController@send')->name ('twilio');

@@ -18,6 +18,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/stripe', 'StripeController@index')->name ('stripe.index');
+Route::post('/stripe', 'StripeController@payment')->name ('stripe.payment');
+Route::get('/stripe.plan.create', 'StripeController@plan')->name ('stripe.plan.create');
+Route::get('/stripe.plan.subscription', 'StripeController@subscription')->name ('stripe.plan.subscription');
+
 Route::get('/welcome', function (){
     //dd (session ('users.profile'));
     $class = 'index-page sidebar-collapse';
@@ -138,3 +143,4 @@ Route::middleware([AuthEvenma::class])->group(function () {
 
 
 Route::get ('twilio', 'TwilioController@send')->name ('twilio');
+

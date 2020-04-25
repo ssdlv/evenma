@@ -65,7 +65,7 @@
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="cc-number">Credit card number</label>
-                        <input type="text" data-stripe="number" class="form-control" id="number" value="4242424242424242" placeholder="" required>
+                        <input type="text" data-stripe="number" class="form-control" id="number" value="4242 4242 4242 4242" placeholder="" required>
                         <div class="invalid-feedback">
                             Credit card number is required
                         </div>

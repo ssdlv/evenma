@@ -1,3 +1,4 @@
 #GitHub login : ssdlv  pass : ssdlv@mspeedy00.git
 #mysql login evenma_cli host % pass evenma.cli@gmail.com
 #mysql login evenma_admin host % pass evenma.admin@gmail.com
+#pgsql

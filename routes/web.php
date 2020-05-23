@@ -144,3 +144,9 @@ Route::middleware([AuthEvenma::class])->group(function () {
 
 Route::get ('twilio', 'TwilioController@send')->name ('twilio');
 
+Route::get('/resize','InterventionImageController@create')->name('resize');
+Route::post('/resize','InterventionImageController@store')->name('resize');
+
+Route::get('/phpinfo', function() {
+    return phpinfo();
+});

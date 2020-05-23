@@ -152,8 +152,8 @@
                 }else{
                     $title = 'Add Event';
                     $active = '';
-                    $cities = CityController::all($request);
-                    $types = TypeController::all($request);
+                    $cities = (new \App\Http\Controllers\CityController)->all($request);
+                    $types = (new \App\Http\Controllers\TypeController)->all($request);
                     return view('pages.admin.event.added', compact(['title','cities','types','active']));
                 }
             }

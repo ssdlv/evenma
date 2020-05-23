@@ -7,12 +7,14 @@ use App\Dao\NotificationDao;
 use App\Dao\OptionDao;
 use App\Dao\PictureDao;
 use App\Event;
+use App\Jobs\ReseizeJob;
 use App\Notification;
 use App\Option;
 use App\Picture;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 //use Validator;
 use Illuminate\Support\Facades\Validator;
@@ -589,7 +591,8 @@ class EventController extends Controller
         //$fileName = $file->getClientOriginalName();
         $fileExtension = $file->getClientOriginalExtension();
         $fileNameToStore = md5(Str::random(16)).'-'.time().'.'.$fileExtension;
-        $file->move(public_path('/files/'.$dir.'/'), $fileNameToStore);
+        $name = $file->move(public_path('/files/'.$dir.'/'), $fileNameToStore);
+        //$this->resize($name);
         return $fileNameToStore;
     }
 
@@ -614,7 +617,6 @@ class EventController extends Controller
         }
 
     }
-
     public function msg($input)
     {
         return [
@@ -623,6 +625,17 @@ class EventController extends Controller
             "$input.mines"=> 'Type non autorisé !',
             "$input.size"=> 'Taille dépassée !'
         ];
+    }
+
+    public function resize(Request $request) {
+        $file = $request->file('file');
+        $file = $file->move(public_path('uploads'), $file->getClientOriginalName());
+        $format = [100, 200, 300, 400, 500];
+        $this->dispatch(new ReseizeJob($file, $format));
+        //$file = "C:\Users\EvhaMariel\Documents\laravel\\evenma\public\\files\\events\color2.jpg";
+        //return Storage::download($file);
+        //new ReseizeJob($file, $format);
+        dd($format, $file);
     }
 
 

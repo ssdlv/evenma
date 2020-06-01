@@ -123,6 +123,6 @@ class UserController extends Controller
     protected function confirm_mail($details)
     {
         $this->dispatch(new SendMailJob($details, 'confirm'));
-        /*Mail::send(new ConfirmMail($details));*/
+        //Mail::send(new ConfirmMail($details));
     }
 }

@@ -5,6 +5,7 @@ use App\Event;
 use App\Http\Middleware\AuthEvenma;
 use App\Product;
 use App\Type;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Dao\UserDao;
 use App\Http\Controllers\Controller;
+use App\Jobs\SendMailJob;
 use App\Mail\ResetPasswordMail;
 use App\User;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
@@ -29,7 +30,7 @@ class ForgotPasswordController extends Controller
     /**
      * Display the form to request a password reset link.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function showLinkRequestForm()
     {
@@ -58,7 +59,8 @@ class ForgotPasswordController extends Controller
                 'url' => url("/password.reset.{$token}?email={$email}"),
             ];
             //dd($details);
-            Mail::send(new ResetPasswordMail($details));
+            $this->dispatch(new SendMailJob($details, 'reset'));
+            //Mail::send(new ResetPasswordMail($details));
             $msg = 'Send email';
             $response = 'passwords.sent';
         }

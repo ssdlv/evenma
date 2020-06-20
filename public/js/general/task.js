@@ -20,7 +20,7 @@ $(document).ready(function () {
     }
 
     let time = null;
-    //ofBar();
+    ofBar();
     function ofBar() {
         $('#ofBar').hide();
         time = setTimeout(ofBar, 0);

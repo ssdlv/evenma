@@ -216,4 +216,16 @@
             }
 
         }
+        public function promote(Request $request)
+        {
+            $page = $request->get('page');
+            if (!session()->has('users')){
+                $class = 'login-page sidebar-collapse';
+                return view('pages.auth.login', compact('class'));
+            }else{
+                $title = 'Promote Event';
+                $active = '';
+                return view('pages.admin.event.promote', compact(['title','active']));
+            }
+        }
     }

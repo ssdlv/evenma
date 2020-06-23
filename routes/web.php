@@ -2,6 +2,8 @@
 
 use App\Category;
 use App\Event;
+use App\Http\Controllers\StripeController;
+use App\Http\Controllers\UI\UIController;
 use App\Http\Middleware\AuthEvenma;
 use App\Product;
 use App\Type;
@@ -18,8 +20,9 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/stripe', 'StripeController@index')->name ('stripe.index');
+//Route::get('cycles/get',[CycleController::class,'get']);
+//'StripeController@index'
+Route::get('/stripe', [StripeController::class, 'index'])->name ('stripe.index');
 Route::post('/stripe', 'StripeController@payment')->name ('stripe.payment');
 Route::get('/stripe.plan.create', 'StripeController@plan')->name ('stripe.plan.create');
 Route::get('/stripe.plan.subscription', 'StripeController@subscription')->name ('stripe.plan.subscription');
@@ -150,4 +153,11 @@ Route::post('/resize','InterventionImageController@store')->name('resize');
 
 Route::get('/phpinfo', function() {
     return phpinfo();
+});
+
+Route::get('/promote/{id}', [UIController::class, 'promote']);
+Route::get('/checkout', function() {
+    //dd($id);
+    return view('pages.others.checkout');
+    //return phpinfo();
 });

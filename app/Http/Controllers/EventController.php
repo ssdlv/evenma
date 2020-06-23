@@ -638,5 +638,4 @@ class EventController extends Controller
         dd($format, $file);
     }
 
-
 }

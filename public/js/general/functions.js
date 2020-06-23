@@ -442,9 +442,9 @@ function getEvents(url, nature = 0, page = 1, city = 0, type = 0, search = '') {
                         '                                <button onclick="location.href=\'/details?event='+value.event_id+'&_token='+token+'\'" type="button" class="btn btn-success btn-simple" rel="tooltip" data-placement="bottom" title="Edit">\n' +
                         '                                    <i class="material-icons">edit</i>\n' +
                         '                                </button>\n' +
-                        '                                <!--button type="button" class="btn btn-danger btn-simple" rel="tooltip" data-placement="bottom" title="Remove">\n' +
-                        '                                    <i class="material-icons">close</i>\n' +
-                        '                                </button-->\n' +
+                        '                                <button type="button" onclick="location.href=\'/promote/'+value.event_id+'\'" class="btn btn-danger btn-simple" rel="tooltip" data-placement="bottom" title="Promote">\n' +
+                        '                                    <i class="material-icons">stars</i>\n' +
+                        '                                </button>\n' +
                         '                            </div>\n' +
                         '\n' +
                         '                            <h4 class="card-title">\n' +

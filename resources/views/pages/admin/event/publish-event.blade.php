@@ -65,8 +65,8 @@
                                                 <button type="button" class="btn btn-success btn-simple" rel="tooltip" data-placement="bottom" title="Edit">
                                                     <i class="material-icons">edit</i>
                                                 </button>
-                                                <button type="button" class="btn btn-danger btn-simple" rel="tooltip" data-placement="bottom" title="Remove">
-                                                    <i class="material-icons">close</i>
+                                                <button type="button" class="btn btn-danger btn-simple" rel="tooltip" data-placement="bottom" title="Promote">
+                                                    <i class="material-icons">stars</i>
                                                 </button>
                                             </div>
 

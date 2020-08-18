@@ -6,7 +6,7 @@
     <div class="container">
         <div class="navbar-translate">
             <a id="link-homes" class="navbar-brand" href="{{ route('home') }}">
-                Evenma </a>
+                {{ env('APP_NAME', 'Evenma') }} </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="navbar-toggler-icon"></span>

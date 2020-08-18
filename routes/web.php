@@ -2,6 +2,7 @@
 
 use App\Category;
 use App\Event;
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\StripeController;
 use App\Http\Controllers\UI\UIController;
 use App\Http\Middleware\AuthEvenma;
@@ -33,7 +34,7 @@ Route::get('/welcome', function (){
     return view ('welcome',compact ('class'));
 })->middleware ('auth.admin');
 
-Route::get('/', 'UI\UIController@home')->name ('home');
+Route::get('/', [UIController::class, 'home'])->name ('home');
 
 Auth::routes(['verify' => true]);
 
@@ -41,27 +42,27 @@ Auth::routes(['verify' => true]);
 
 //UI
 Route::middleware([AuthEvenma::class])->group(function () {
-    Route::get('/types', 'UI\UIController@type')
+    Route::get('/types', [UIController::class, 'type'])
         ->name('type')->middleware ('auth.admin');
-    Route::get('/cities', 'UI\UIController@city')
+    Route::get('/cities', [UIController::class, 'city'])
         ->name('city')->middleware ('auth.admin');
-    Route::get('/profile', 'UI\UIController@profile')->name('profile');
-    Route::get('/add', 'UI\UIController@add')->name('add');
-    Route::get('/edit', 'UI\UIController@edit')->name('edit');
-    Route::get('/ui/edit/init', 'UI\UIController@edit');
+    Route::get('/profile', [UIController::class, 'profile'])->name('profile');
+    Route::get('/add', [UIController::class, 'add'])->name('add');
+    Route::get('/edit', [UIController::class, 'edit'])->name('edit');
+    Route::get('/ui/edit/init', [UIController::class, 'edit']);
 });
 
     //->middleware ('auth.app');
 
-Route::get('/login', 'UI\UIController@login')->name('login');
-Route::get('/register', 'UI\UIController@register')->name('register');
-Route::get('/about', 'UI\UIController@about')->name('about');
-Route::get('/contact', 'UI\UIController@contact')->name('contact');
+Route::get('/login', [UIController::class, 'login'])->name('login');
+Route::get('/register', [UIController::class, 'register'])->name('register');
+Route::get('/about', [UIController::class, 'about'])->name('about');
+Route::get('/contact', [UIController::class, 'contact'])->name('contact');
 
-Route::get('/details', 'UI\UIController@details')->name('details');
+Route::get('/details', [UIController::class, 'details'])->name('details');
 
-Route::get('/home', 'UI\UIController@home');
-Route::get('/ui/conditions/init', 'UI\UIController@conditions');
+Route::get('/home', [UIController::class, 'home']);
+Route::get('/ui/conditions/init', [UIController::class, 'conditions']);
 
 //AUTH
 Route::get('password.reset.{token}', 'Auth\ResetPasswordController@showResetForm')->name('password-reset');
@@ -72,8 +73,8 @@ Route::get('/auth/logout', 'UserController@logout');
 
 Route::post('/auth/register', 'UserController@register');
 //EVENTS
-Route::get('/events/all', 'EventController@all');
-Route::get('/events/get', 'EventController@get');
+Route::get('/events/all', [EventController::class, 'all']);
+Route::get('/events/get', [EventController::class, 'get']);
 
 Route::middleware([AuthEvenma::class])->group(function () {
     Route::post('/events/delete', 'EventController@delete')->name ('event.delete')->middleware ('auth.admin');

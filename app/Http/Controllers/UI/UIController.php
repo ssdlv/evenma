@@ -163,7 +163,8 @@
             if (!session()->has('users')){
                 $class = 'login-page sidebar-collapse';
                 return view('pages.login', compact('class'));
-            }else{
+            }
+            else{
                 $eDao = new EventDao();
                 $pDao = new PictureDao();
                 $eService = new EvenmaService();

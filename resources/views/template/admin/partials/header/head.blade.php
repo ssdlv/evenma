@@ -10,6 +10,8 @@
     <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('assets/img/settings/apple-icon.png') }}" />
     <link rel="icon" type="image/png" href="{{ asset('assets/img/settings/favicon.png') }}" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <script src="https://cdn.tiny.cloud/1/pa07m3h440u6n7t80ksa6csm6z05vrgoipz98qkriehqnugz/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+
 
     <title>Evenma</title>
 

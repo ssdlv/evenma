@@ -1,6 +1,16 @@
 @extends('template.admin.layout')
 
 @section('content')
+    <script>//tinymce.init({selector:'textarea#event-desc'});
+        tinymce.init({
+            selector: 'textarea#event-desc',
+            plugins: 'a11ychecker advcode casechange formatpainter linkchecker autolink lists checklist media mediaembed pageembed permanentpen powerpaste table advtable tinycomments tinymcespellchecker',
+            toolbar: 'a11ycheck addcomment showcomments casechange checklist code formatpainter pageembed permanentpen table',
+            toolbar_mode: 'floating',
+            tinycomments_mode: 'embedded',
+            tinycomments_author: 'Evenma',
+        });
+    </script>
     <div class="content">
         @php
             //var_dump($result[0]->event_title);
@@ -94,7 +104,7 @@
                                             <div class="col-sm-6">
                                                 <div class="input-group">
                                                     <span class="input-group-addon">
-                                                        <i class="material-icons">face</i>
+                                                        <i class="material-icons">assignment</i>
                                                     </span>
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">Type Event <small>(required)</small></label>
@@ -108,7 +118,7 @@
 
                                                 <div class="input-group">
                                                     <span class="input-group-addon">
-                                                        <i class="material-icons">face</i>
+                                                        <i class="material-icons">assignment</i>
                                                     </span>
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">Title <small>(required)</small></label>
@@ -121,7 +131,7 @@
                                             <div class="col-lg-10 col-lg-offset-1">
                                                 <div class="input-group">
                                                         <span class="input-group-addon">
-                                                            <i class="material-icons">email</i>
+                                                            <i class="material-icons">assignment</i>
                                                         </span>
                                                     <!--if (desc.length >= 50){
                 console.log(desc.length);
@@ -130,7 +140,7 @@
                                                     <div class="form-group label-floating">
                                                         <label for="event-desc" class="control-label">Description <small>(required)</small></label>
                                                         <!--input id="event-desc" name="event-desc" type="text" class="form-control"-->
-                                                        <textarea required class="form-control" rows="3" cols="40" id="event-desc" name="event-desc">{{ $result[0]->event_desc }}</textarea>
+                                                        <textarea required class="form-control" rows="" cols="40" id="event-desc" name="event-desc">{{ $result[0]->event_desc }}</textarea>
                                                     </div>
                                                 </div>
                                             </div>

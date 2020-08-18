@@ -120,6 +120,7 @@ class EventController extends Controller
             //$event->element = $elements;
             $event->event_start = date('d M Y H\h : i', $event->event_start);
             //$event->evedesc = strlen($event->desc);
+            $event->event_desc = str_replace('<p>', '<p class="card-description">', $event->event_desc);
             if (strlen($event->event_desc) > 148){
                 $event->event_desc = substr($event->event_desc, 0,    148).'...';
             }

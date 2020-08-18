@@ -11,7 +11,7 @@ $(document).ready(function () {
 //Preview
     //preview type
     $(document).on('change', '#change-type', function () {
-        var type = $('#change-type option:selected').text();
+        let type = $('#change-type option:selected').text();
         //$('#preview-type').text(type);
     });
     //preview title
@@ -27,6 +27,7 @@ $(document).ready(function () {
     //preview desc
     $(document).on('keyup', '#event-desc', function () {
         let desc = $('#event-desc').val();
+        console.log(desc);
         if (desc === '') {
             $('#preview-desc').text('Description');
         } else {
@@ -65,6 +66,7 @@ $(document).ready(function () {
     });
     $('#formAddEvent').on('submit', function (e) {
         e.preventDefault();
+        console.log(new FormData(this));
         //eAdd(new FormData(this));
         evenma.eAdd(new FormData(this));
     });

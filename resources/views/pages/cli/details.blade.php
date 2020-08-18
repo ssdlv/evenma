@@ -72,7 +72,7 @@
                                 <!--collapse show-->
                                 <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
                                     <div class="card-body" >
-                                        <p>{{ $event->event_desc }}.</p>
+                                        <p>{!! $event->event_desc !!}.</p>
 
                                         @foreach($event->elements as $element)
                                             <div class="form-group row">

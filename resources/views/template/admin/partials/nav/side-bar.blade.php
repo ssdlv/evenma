@@ -11,7 +11,7 @@
         </a>
 
         <a href="{{ route('home') }}" class="simple-text logo-normal">
-            Evenma
+            {{ env('APP_NAME', 'Evenma') }}
         </a>
     </div>
 

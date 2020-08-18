@@ -7,9 +7,8 @@
     <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('assets/img/settings/apple-icon.png') }}" />
     <link rel="icon" type="image/png" href="{{ asset('assets/img/settings/favicon.png') }}" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <title>
-        Evenma
-    </title>
+    <title>{{ env('APP_NAME', 'Evenma') }}</title>
+    <meta name="keywords" content="Evenma, Event, Events, Evénement, Evénements">
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
     <!-- Extra details for Live View on GitHub Pages -->
     <!-- Canonical SEO -->

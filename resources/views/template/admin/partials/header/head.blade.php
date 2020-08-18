@@ -2,8 +2,6 @@
     session_start();
 @endphp
 
-<!-- Mirrored from demos.creative-tim.com/bs3/material-dashboard-pro/examples/dashboard.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 01 Jan 2020 03:40:07 GMT -->
-<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
 <head>
     <meta charset="utf-8" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -13,7 +11,7 @@
     <script src="https://cdn.tiny.cloud/1/pa07m3h440u6n7t80ksa6csm6z05vrgoipz98qkriehqnugz/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 
 
-    <title>Evenma</title>
+    <title>{{ env('APP_NAME', 'Evenma') }}</title>
 
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
@@ -22,7 +20,7 @@
     <link rel="canonical" href="http://www.creative-tim.com/product/material-dashboard-pro"/>
 
     <!--  Social tags      -->
-    <meta name="keywords" content="Evenma, Event, Evénement, bootstrap material admin, bootstrap material dashboard, material design admin, material design, creative tim, html dashboard, html css dashboard, web dashboard, freebie, free bootstrap dashboard, css3 dashboard, bootstrap admin, bootstrap dashboard, frontend, responsive bootstrap dashboard, premiu material design admin">
+    <meta name="keywords" content="Evenma, Event, Events, Evénement, Evénements">
     <meta name="description" content="Material Dashboard PRO is a Premium Material Bootstrap Admin with a fresh, new design inspired by Google's Material Design.">
 
     <!-- Schema.org markup for Google+ -->

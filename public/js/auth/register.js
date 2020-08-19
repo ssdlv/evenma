@@ -80,24 +80,28 @@ $(document).ready(function () {
     //$(document).on('change');
     $('input[type=radio][name=profile]').change(function() {
         let form = $('#form-register');
+        let name = $('#name');
+        let icon = $('#icon-name');
         let address = $('#form-group-address');
         clear();
         if (this.value === 'particular') {
             //form[0].reset();
+            name.attr('placeholder','Your name');
             address.hide();
             address.html('');
         }
         else if (this.value === 'professional') {
             //form[0].reset();
-
+            icon.text('account_balance');
+            name.attr('placeholder','Church name');
             address.show();
             address.html('<div class="input-group">\n' +
                 '                                                    <div class="input-group-prepend">\n' +
                 '                                                      <span class="input-group-text">\n' +
-                '                                                        <i class="material-icons">maps</i>\n' +
+                '                                                        <i class="material-icons">place</i>\n' +
                 '                                                      </span>\n' +
                 '                                                    </div>\n' +
-                '                                                    <input id="address" name="address" type="text" class="form-control" placeholder="church address" required>\n' +
+                '                                                    <input id="address" name="address" type="text" class="form-control" placeholder="Church address" required>\n' +
                 '                                                </div>');
         }
     });

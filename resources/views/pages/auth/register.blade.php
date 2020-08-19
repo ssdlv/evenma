@@ -94,10 +94,10 @@
                                                 <div class="input-group">
                                                     <div class="input-group-prepend">
                                                       <span class="input-group-text">
-                                                        <i class="material-icons">face</i>
+                                                        <i id="icon-name" class="material-icons">face</i>
                                                       </span>
                                                     </div>
-                                                    <input id="name" name="name" type="text" class="form-control" placeholder="Church name..." required>
+                                                    <input id="name" name="name" type="text" class="form-control" placeholder="Your name" required>
                                                 </div>
                                             </div>
                                             <div id="form-group-email" class="form-group">
@@ -107,7 +107,7 @@
                                                         <i class="material-icons">mail</i>
                                                       </span>
                                                     </div>
-                                                    <input id="email" name="email" type="text" class="form-control" placeholder="Email..." required>
+                                                    <input id="email" name="email" type="text" class="form-control" placeholder="Email" required>
                                                 </div>
                                             </div>
                                             <div id="form-group-phone" class="form-group">

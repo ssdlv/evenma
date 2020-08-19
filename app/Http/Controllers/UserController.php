@@ -28,8 +28,11 @@ class UserController extends Controller
                     'title' => 'Error',
                     'message' => 'This email is already used. Try another email address!',
                 ]);
-            }else{
+            }
+            else{
                 event(new Registered($user = $uDao->register($request->all())));
+
+                //$user = $uDao->register($request->all());
                 //$user->notify(new RegisterNotify());
                 $details = [
                     'email' => $user->email,
@@ -37,21 +40,23 @@ class UserController extends Controller
                     'url' => url("confirm/{$user->id}/".urldecode($user->confirmation_token)),
                 ];
                 //Mail::send(new ConfirmMail($details));
-                $this->confirm_mail($details);
+                //$this->confirm_mail($details);
                 return response()->json([
                     'data' => $details,
                     'result' => 'success',
                     'page' => 'home',
                     'title' => 'Success',
-                    'message' => 'Welcome to Evenma',
+                    'message' => 'Welcome to ' . env('APP_NAME'),
                     'info' => 'We have sent you a confirmation email to activate your account.',
                 ]);
             }
-        }else{
+        }
+        else{
             return response()->json([
                 'result' => 'warning',
                 'title' => 'Information',
                 'message' => 'Please validate the identification constraints !',
+                'errors' => $validate->errors()
             ]);
         }
     }

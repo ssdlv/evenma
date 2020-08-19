@@ -24,11 +24,11 @@ class UserSeeder extends Seeder
             //'type_updated' => time(),
         ]);
         User::create([
-            'name' => 'Professional',
-            'email' => 'evhaabir98@hotmail.com',
+            'name' => 'Demo',
+            'email' => 'demo@evenma.com',
             'phone' => '+212700474173',
             'profile' => 'professional',
-            'password' => Hash::make('root1'),
+            'password' => Hash::make('demo'),
             'confirmation_token' => true, //str_replace('/', '', bcrypt(Str::random(16))),
             //'type_created' => time(),
             //'type_updated' => time(),

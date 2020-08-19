@@ -10,6 +10,8 @@ use Illuminate\Notifications\Notifiable;
  * @property mixed id
  * @property mixed name
  * @property mixed email
+ * @property mixed phone
+ * @property mixed address
  * @property mixed image
  * @property mixed profile
  * @property mixed confirmation_token
@@ -24,7 +26,7 @@ class User extends Authenticatable //implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'confirmation_token', 'profile', 'phone', 'status', 'delete',
+        'name', 'email', 'password', 'confirmation_token', 'profile', 'phone', 'status', 'delete', 'address',
     ];
 
     /**

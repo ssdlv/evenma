@@ -40,7 +40,7 @@
                                       <i class="material-icons">mail</i>
                                     </span>
                                     </div>
-                                    <input type="email" name="email" id="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="Email...">
+                                    <input type="email" name="email" id="email" class="form-control @error('email') is-invalid @enderror" required autocomplete="email" autofocus placeholder="Email..." value="demo@evenma.com">
                                     @error('email')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -53,7 +53,7 @@
                                       <i class="material-icons">lock_outline</i>
                                     </span>
                                     </div>
-                                    <input type="password" name="password" id="password" class="form-control @error('password') is-invalid @enderror" placeholder="Password...">
+                                    <input type="password" name="password" id="password" class="form-control @error('password') is-invalid @enderror" placeholder="Password..." value="demo">
                                     @error('password')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>

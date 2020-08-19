@@ -6,20 +6,22 @@ $(document).ready(function () {
     });
 
     $(document).on("click", "#link-login-data", function () {
-        var email = $('#email').val();
-        var password = $('#password').val();
+        let email = $('#email').val();
+        let password = $('#password').val();
         $.ajax({
             url: '/auth/login',
             type: 'POST',
             data:{email:email,password:password},
             dataType: 'json',
             success: function(response){
-                if (response.result == 'success'){
+                if (response.result === 'success'){
                     toastAlert(response.title, response.message, response.result);
-                }else if (response.result == 'warning'){
+                }
+                else if (response.result === 'warning'){
                     console.log(response);
                     toastAlert(response.title, response.message, response.result);
-                }else {
+                }
+                else {
                     console.log(response);
                     toastAlert(response.title, response.message, response.result);
                 }

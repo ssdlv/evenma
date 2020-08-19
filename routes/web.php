@@ -5,6 +5,7 @@ use App\Event;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\StripeController;
 use App\Http\Controllers\UI\UIController;
+use App\Http\Controllers\UserController;
 use App\Http\Middleware\AuthEvenma;
 use App\Product;
 use App\Type;
@@ -71,7 +72,7 @@ Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm
 Route::post('/auth/login', 'UserController@login');
 Route::get('/auth/logout', 'UserController@logout');
 
-Route::post('/auth/register', 'UserController@register');
+Route::post('/auth/register', [UserController::class,'register']);
 //EVENTS
 Route::get('/events/all', [EventController::class, 'all']);
 Route::get('/events/get', [EventController::class, 'get']);

@@ -1,9 +1,9 @@
 auth = {
-    register : function (name,email,password,phone,profile) {
+    register : function (name,email,password,phone,profile,address) {
         $.ajax({
             url: '/auth/register',
             type: 'post',
-            data:{name:name,email:email,password:password,phone:phone,profile:profile},
+            data:{name:name,email:email,password:password,phone:phone,profile:profile,address:address},
             dataType: 'json',
             success: function(response){
                 console.log(response);
@@ -77,12 +77,53 @@ $(document).ready(function () {
         }
     });
 
+    //$(document).on('change');
+    $('input[type=radio][name=profile]').change(function() {
+        let form = $('#form-register');
+        let address = $('#form-group-address');
+        clear();
+        if (this.value === 'particular') {
+            //form[0].reset();
+            address.hide();
+            address.html('');
+        }
+        else if (this.value === 'professional') {
+            //form[0].reset();
+
+            address.show();
+            address.html('<div class="input-group">\n' +
+                '                                                    <div class="input-group-prepend">\n' +
+                '                                                      <span class="input-group-text">\n' +
+                '                                                        <i class="material-icons">maps</i>\n' +
+                '                                                      </span>\n' +
+                '                                                    </div>\n' +
+                '                                                    <input id="address" name="address" type="text" class="form-control" placeholder="church address" required>\n' +
+                '                                                </div>');
+        }
+    });
+    $('input[type=checkbox][name=cgu]').change(function () {
+        console.log(this.checked);
+        let button = $('#link-register-data');
+        if (this.checked)
+            button.removeAttr('disabled');
+        else
+            button.attr('disabled', true);
+    });
+
+    function clear() {
+        $('#name').val('');
+        $('#email').val('');
+        $('#address').val('');
+        $('#phone').val('');
+        $('#password').val('');
+    }
+
     $(document).on("click", "#register", function () {
-        var name = $('#name').val();
-        var email = $('#email').val();
-        var phone = $('#phone').val();
-        var profile = document.getElementById('profile-pro').checked;
-        var password = $('#password').val();
+        let name = $('#name').val();
+        let email = $('#email').val();
+        let phone = $('#phone').val();
+        let profile = document.getElementById('profile-pro').checked;
+        let password = $('#password').val();
         console.log(name,email,password,phone,profile);
         throw '';
         if (profile === true){
@@ -124,12 +165,15 @@ $(document).ready(function () {
         let email = $('#email').val();
         let phone = $('#phone').val();
         let profile = document.getElementById('profile').checked;
-        if (profile === false)
+        let address = null;
+        if (profile === false) {
             profile = 'professional';
+            address = $('#address').val();
+        }
         else
             profile = 'particular';
         let password = $('#password').val();
-        auth.register(name,email,password,phone,profile);
+        auth.register(name,email,password,phone,profile,address);
     });
 
     function register (name,email,password,phone,profile) {
@@ -144,15 +188,20 @@ $(document).ready(function () {
                     toastAlert(response.title, response.message, response.result);
                     sweet.show('info','Account has been built !',response.info);
                     //setTimeout(10000, uiLogin());
-                }else if (response.result === 'warning'){
+                }
+                else if (response.result === 'warning'){
                     //console.log(response);
                     toastAlert(response.title, response.message, response.result);
-                }else {
+                }
+                else {
                     //console.log(response);
                     toastAlert(response.title, response.message, response.result);
                 }
             }
         });
     }
+
+    let churchForm = null;
+    let particularForm = null;
 
 });

@@ -75,8 +75,8 @@
                                                             <input class="form-check-input" type="radio" name="profile" id="profile" value="particular" checked>
                                                             Particular
                                                             <span class="circle">
-                                                            <span class="check"></span>
-                                                          </span>
+                                                                <span class="check"></span>
+                                                            </span>
                                                         </label>
                                                     </div>
                                                     <div class="form-check col-6">
@@ -84,55 +84,68 @@
                                                             <input class="form-check-input" type="radio" name="profile" id="profile" value="professional">
                                                             Professional
                                                             <span class="circle">
-                                                            <span class="check"></span>
-                                                          </span>
+                                                                <span class="check"></span>
+                                                            </span>
                                                         </label>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="form-group">
+                                            <div id="form-group-name" class="form-group">
                                                 <div class="input-group">
                                                     <div class="input-group-prepend">
                                                       <span class="input-group-text">
                                                         <i class="material-icons">face</i>
                                                       </span>
                                                     </div>
-                                                    <input id="name" name="name" type="text" class="form-control" placeholder="First Name...">
+                                                    <input id="name" name="name" type="text" class="form-control" placeholder="Church name..." required>
                                                 </div>
                                             </div>
-                                            <div class="form-group">
+                                            <div id="form-group-email" class="form-group">
                                                 <div class="input-group">
                                                     <div class="input-group-prepend">
                                                       <span class="input-group-text">
                                                         <i class="material-icons">mail</i>
                                                       </span>
                                                     </div>
-                                                    <input id="email" name="email" type="text" class="form-control" placeholder="Email...">
+                                                    <input id="email" name="email" type="text" class="form-control" placeholder="Email..." required>
                                                 </div>
                                             </div>
-                                            <div class="form-group">
+                                            <div id="form-group-phone" class="form-group">
                                                 <div class="input-group">
                                                     <div class="input-group-prepend">
                                                       <span class="input-group-text">
                                                         <i class="material-icons">phone</i>
                                                       </span>
                                                     </div>
-                                                    <input id="phone" name="phone" type="text" class="form-control" placeholder="+212700474173" value="+212700474173">
+                                                    <input id="phone" name="phone" type="text" class="form-control" placeholder="+242066712997" required>
                                                 </div>
                                             </div>
-                                            <div class="form-group">
+                                            <div id="form-group-address" class="form-group">
+
+                                            </div>
+                                            <div id="form-group-password" class="form-group">
                                                 <div class="input-group">
                                                     <div class="input-group-prepend">
                                                       <span class="input-group-text">
                                                         <i class="material-icons">lock_outline</i>
                                                       </span>
                                                     </div>
-                                                    <input  id="password" name="password" type="password" placeholder="Password..." class="form-control" />
+                                                    <input  id="password" name="password" type="password" placeholder="Password" class="form-control" required />
                                                 </div>
                                             </div>
+                                            <!--div id="form-group-c-password" class="form-group">
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                      <span class="input-group-text">
+                                                        <i class="material-icons">lock_outline</i>
+                                                      </span>
+                                                    </div>
+                                                    <input  id="c-password" name="c-password" type="password" placeholder="Confirm Password" class="form-control" />
+                                                </div>
+                                            </div-->
                                             <div class="form-check">
                                                 <label class="form-check-label">
-                                                    <input class="form-check-input" type="checkbox" value="" checked>
+                                                    <input name="cgu" class="form-check-input" type="checkbox" value="" required checked>
                                                     <span class="form-check-sign">
                                                       <span class="check"></span>
                                                     </span>

@@ -21,6 +21,7 @@ class UserDao
             'email' => $user['email'],
             'profile' => $user['profile'],
             'phone' => $user['phone'],
+            'address' => $user['address'],
             'status' => true,
             'delete' => false,
             'password' => Hash::make($user['password']),

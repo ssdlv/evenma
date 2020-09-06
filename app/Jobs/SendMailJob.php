@@ -28,6 +28,7 @@ class SendMailJob implements ShouldQueue
      * Create a new job instance.
      *
      * @param array $details
+     * @param string $type
      */
     public function __construct(array $details, string $type)
     {

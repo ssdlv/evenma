@@ -132,7 +132,7 @@ class LoginController extends Controller
     {
         return array_merge(
             $request->only($this->username(), 'password'),
-            ['confirmation_token' => true]
+            //['confirmation_token' => true]
         );
     }
 }

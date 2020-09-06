@@ -102,7 +102,17 @@ $(document).ready(function () {
                 '                                                      </span>\n' +
                 '                                                    </div>\n' +
                 '                                                    <input id="address" name="address" type="text" class="form-control" placeholder="Church address" required>\n' +
-                '                                                </div>');
+                '                         ' +
+                '' +
+                '' +
+                '' +
+                '' +
+                '' +
+                '' +
+                '' +
+                '' +
+                '' +
+                '                       </div>');
         }
     });
     $('input[type=checkbox][name=cgu]').change(function () {

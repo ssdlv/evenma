@@ -286,6 +286,9 @@
                         <div class="container row pull-right sharethis-inline-share-buttons st-center st-has-labels  st-inline-share-buttons st-animated" id="st-1">
                             <!--button class="btn btn-rose btn-round">Share &#xA0;<i class="material-icons">share</i></button-->
                         </div>
+                        <!-- ShareThis BEGIN -->
+                        <div class="sharethis-inline-share-buttons"></div>
+                        <!-- ShareThis END -->
                     </div>
                     @php
                         dump(csrf_token ());

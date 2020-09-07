@@ -23,10 +23,10 @@ evenma = {
                         '                                    <i class="material-icons">build</i> Fix Header!\n' +
                         '                                </button>\n' +
                         '\n' +
-                        '                                <button onclick="location.href=\'/details?event='+value.event_id+'\'" type="button" class="btn btn-default btn-simple" rel="tooltip" data-placement="bottom" title="View">\n' +
+                        '                                <button onclick="location.href=\'/details/'+value.event_id+'\'" type="button" class="btn btn-default btn-simple" rel="tooltip" data-placement="bottom" title="View">\n' +
                         '                                    <i class="material-icons">remove_red_eye</i>\n' +
                         '                                </button>\n' +
-                        '                                <button onclick="location.href=\'/details?event='+value.event_id+'\'" type="button" class="btn btn-success btn-simple" rel="tooltip" data-placement="bottom" title="Edit">\n' +
+                        '                                <button onclick="location.href=\'/details/'+value.event_id+'\'" type="button" class="btn btn-success btn-simple" rel="tooltip" data-placement="bottom" title="Edit">\n' +
                         '                                    <i class="material-icons">edit</i>\n' +
                         '                                </button>\n' +
                         '                                <!--button type="button" class="btn btn-danger btn-simple" rel="tooltip" data-placement="bottom" title="Remove">\n' +

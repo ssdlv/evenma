@@ -178,7 +178,6 @@ evenma = {
 $(document).ready(function () {
     let token = $('meta[name="csrf-token"]').attr('content');
 });
-let token = $('meta[name="csrf-token"]').attr('content');
 function toastAlert(title, message, type) {
     toastr[type](message, title);
     toastr.options = {

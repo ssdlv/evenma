@@ -131,7 +131,7 @@ evenma = {
                         '                                    <i class="material-icons">build</i> Fix Header!\n' +
                         '                                </button>\n' +
                         '\n' +
-                        '                                <button onclick="location.href=\'/details?event='+value.event_id+'\'" type="button" class="btn btn-default btn-simple" rel="tooltip" data-placement="bottom" title="View">\n' +
+                        '                                <button onclick="location.href=\'/details/'+value.event_id+'\'" type="button" class="btn btn-default btn-simple" rel="tooltip" data-placement="bottom" title="View">\n' +
                         '                                    <i class="material-icons">remove_red_eye</i>\n' +
                         '                                </button>\n' +
                         '                                <button data-id="'+value.event_id+'" type="button" class="btn btn-default btn-simple btn-edit" rel="tooltip" data-placement="bottom" title="Edit">\n' +
@@ -285,7 +285,7 @@ $(document).ready(function () {
     $(document).on('click', '.btn-view', function (e) {
         e.preventDefault();
         let id = $(this).data('id');
-        let link = '/details?event=' + id;
+        let link = '/details/' + id;
         $(location).attr('href',link);
     });
 

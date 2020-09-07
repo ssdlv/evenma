@@ -534,7 +534,7 @@
                                                     <div class="card card-blog">
                                                         <div class="card-header card-header-image">
 
-                                                            <a href="/details?event={{ $event->event_id }}" class="add-view">
+                                                            <a href="{{ route('details', $event->event_id) }}" class="add-view">
                                                                 <img class="img" src="/files/events/{{ $event->event_image }}">
                                                             </a>
 
@@ -542,7 +542,7 @@
                                                         <div class="card-body">
                                                             <h6 class="card-category text-info">{{ $event->type_name }}</h6>
                                                             <h4 class="card-title" class="add-view">
-                                                                <a href="/details?event={{ $event->event_id }}">{{ $event->event_title }}</a>
+                                                                <a href="{{ route('details', $event->event_id) }}">{{ $event->event_title }}</a>
                                                             </h4>
                                                             <p class="card-description">{{ $event->event_desc }}</p>
                                                         </div>

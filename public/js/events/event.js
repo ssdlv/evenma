@@ -4,7 +4,7 @@ $(document).ready(function () {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
-    let token = $('meta[name="csrf-token"]').attr('content');
+    //let token = $('meta[name="csrf-token"]').attr('content');
     //alert(token);
     //var csrftoken = jQuery("[name=csrfmiddlewaretoken]").val();
 
@@ -20,25 +20,25 @@ $(document).ready(function () {
 
     //console.log(city,type);
 
-    var span = $('#span-date').text();
+    //let span = $('#span-date').text();
     getCities();
     $(document).on('change','#change-city', function () {
-        var city = $('#change-city').val();
-        var type = $('#change-type').val();
-        var start = $('#time-start').val();
-        var end = $('#time-end').val();
-        var search = $('#search').val();
+        let city = $('#change-city').val();
+        let type = $('#change-type').val();
+        let start = $('#time-start').val();
+        let end = $('#time-end').val();
+        let search = $('#search').val();
         page = 1;
         events(city, type, search, start, end, page,0);
         //console.log(city, type, start, end);
     });
     getTypes();
     $(document).on('change','#change-type', function () {
-        var type = $('#change-type').val();
-        var city = $('#change-city').val();
-        var start = $('#time-start').val();
-        var end = $('#time-end').val();
-        var search = $('#search').val();
+        let type = $('#change-type').val();
+        let city = $('#change-city').val();
+        let start = $('#time-start').val();
+        let end = $('#time-end').val();
+        let search = $('#search').val();
         page = 1;
         events(city, type, search, start, end, page,0);
         //console.log(city, type, start, end);
@@ -46,13 +46,13 @@ $(document).ready(function () {
 
     //Publish Event
     $(document).on('click','#event-publish-link', function () {
-        var event = $(this).data('id');
+        let event = $(this).data('id');
         publish(event);
         //alert(event);
     });
     //Delete Event
     $(document).on('click','#event-delete-link', function () {
-        var event = $(this).data('id');
+        let event = $(this).data('id');
         eDelete(event);
     });
 
@@ -100,19 +100,19 @@ $(document).ready(function () {
     testDate();
     function testDate() {
         //alert("h");
-        var server = ((1574878870 + (86400 * 3))*1000);
-        var launch = new Date(2019, 12, 30, 23, 59, 59);
-        var now = new Date();
+        //let server = ((1574878870 + (86400 * 3))*1000);
+        let launch = new Date(2019, 12, 30, 23, 59, 59);
+        let now = new Date();
         //alert(launch + now);
-        var s = (launch.getTime() - now.getTime())/1000;
-        var d = Math.floor(s/86400);
+        let s = (launch.getTime() - now.getTime())/1000;
+        let d = Math.floor(s/86400);
         s -= d * 86400;
-        var h = Math.floor(s/3600);
+        let h = Math.floor(s/3600);
         s -= h * 3600;
-        var m = Math.floor(s/60);
+        let m = Math.floor(s/60);
         s -= m * 60;
         s = Math.floor(s);
-        var result = d +'jrs ' + h + 'hrs ' + m + 'min '+ s + 'secs';
+        let result = d +'jrs ' + h + 'hrs ' + m + 'min '+ s + 'secs';
         d = d + ' jr'; h = h + ' hr'; m = m + ' min'; s = s + 'sec';
         if (d > 1)
             d = d + ' jrs';

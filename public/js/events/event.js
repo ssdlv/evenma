@@ -56,7 +56,7 @@ $(document).ready(function () {
         eDelete(event);
     });
 
-    events(city, type, search, start, end,1,0);
+    //events(city, type, search, start, end,1,0);
 
     //Add View Event
     $(document).on('click','.add-view', function () {

@@ -89,7 +89,7 @@ evenma = {
                         '                                                    <i class="material-icons">more_horiz</i>\n' +
                         '                                                </a>\n' +
                         '                                                <div class="dropdown-menu dropdown-with-icons">\n' +
-                        '                                                    <a href="/details?event={{ $event->event_id }}" class="dropdown-item">\n' +
+                        '                                                    <a href="/details/'+value.event_id+'" class="dropdown-item">\n' +
                         '                                                        <i class="material-icons">visibility</i> View\n' +
                         '                                                    </a>\n' +
                         '                                                </div>\n' +
@@ -113,7 +113,7 @@ evenma = {
                         '                                                    <i class="material-icons">more_horiz</i>\n' +
                         '                                                </a>\n' +
                         '                                                <div class="dropdown-menu dropdown-with-icons">\n' +
-                        '                                                    <a href="/details?event='+value.event_id+'" class="dropdown-item">\n' +
+                        '                                                    <a href="/details/'+value.event_id+'" class="dropdown-item">\n' +
                         '                                                        <i class="material-icons">visibility</i> View\n' +
                         '                                                    </a>\n' +
                         '                                                    <a href="/edit?event='+value.event_id+'" class="dropdown-item">\n' +
@@ -418,7 +418,7 @@ function getEvents(url, nature = 0, page = 1, city = 0, type = 0, search = '') {
         dataType: 'json',
         success: function(response){
             console.log(response);
-            var rows = '';
+            let rows = '';
             if (response['events'].length >= 1){
                 $.each(response['events'], function (key, value) {
                     rows = rows +

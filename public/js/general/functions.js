@@ -356,7 +356,7 @@ function getEventByUser(user){
                     '                                                    <i class="material-icons">more_horiz</i>\n' +
                     '                                                </a>\n' +
                     '                                                <div class="dropdown-menu dropdown-with-icons">\n' +
-                    '                                                    <a href="/details?event='+value.event_id+'&_token='+token+'" class="dropdown-item">\n' +
+                    '                                                    <a href="/details/'+value.event_id+'" class="dropdown-item">\n' +
                     '                                                        <i class="material-icons">visibility</i> View\n' +
                     '                                                    </a>\n' +
                     '                                                </div>\n' +
@@ -381,10 +381,10 @@ function getEventByUser(user){
                     '                                                    <i class="material-icons">more_horiz</i>\n' +
                     '                                                </a>\n' +
                     '                                                <div class="dropdown-menu dropdown-with-icons">\n' +
-                    '                                                    <a href="/details?event='+value.event_id+'&_token='+token+'" class="dropdown-item">\n' +
+                    '                                                    <a href="/details/'+value.event_id+'" class="dropdown-item">\n' +
                     '                                                        <i class="material-icons">visibility</i> View\n' +
                     '                                                    </a>\n' +
-                    '                                                    <a href="/edit?event='+value.event_id+'" class="dropdown-item">\n' +
+                    '                                                    <a href="/edit/'+value.event_id+'" class="dropdown-item">\n' +
                     '                                                        <i class="material-icons">edit</i> Edit\n' +
                     '                                                    </a>\n' +
                     '                                                    <a id="event-delete-link" data-id="'+value.event_id+'" href="javascript:void(0)" class="dropdown-item">\n' +
@@ -425,7 +425,7 @@ function getEvents(url, nature = 0, page = 1, city = 0, type = 0, search = '') {
                         '<div class="col-md-4">\n' +
                         '                    <div class="card card-product">\n' +
                         '                        <div class="card-image" data-header-animation="true">\n' +
-                        '                            <a href="details?event='+value.event_id+'&_token='+token+'">\n' +
+                        '                            <a href="details/'+value.event_id+'">\n' +
                         '                                <img class="img" src="'+value.event_image+'">\n' +
                         '                            </a>\n' +
                         '                        </div>\n' +
@@ -436,10 +436,10 @@ function getEvents(url, nature = 0, page = 1, city = 0, type = 0, search = '') {
                         '                                    <i class="material-icons">build</i> Fix Header!\n' +
                         '                                </button>\n' +
                         '\n' +
-                        '                                <button onclick="location.href=\'/details?event='+value.event_id+'&_token='+token+'\'" type="button" class="btn btn-default btn-simple" rel="tooltip" data-placement="bottom" title="View">\n' +
+                        '                                <button onclick="location.href=\'/details/'+value.event_id+'" type="button" class="btn btn-default btn-simple" rel="tooltip" data-placement="bottom" title="View">\n' +
                         '                                    <i class="material-icons">remove_red_eye</i>\n' +
                         '                                </button>\n' +
-                        '                                <button onclick="location.href=\'/details?event='+value.event_id+'&_token='+token+'\'" type="button" class="btn btn-success btn-simple" rel="tooltip" data-placement="bottom" title="Edit">\n' +
+                        '                                <button onclick="location.href=\'/details/'+value.event_id+'" type="button" class="btn btn-success btn-simple" rel="tooltip" data-placement="bottom" title="Edit">\n' +
                         '                                    <i class="material-icons">edit</i>\n' +
                         '                                </button>\n' +
                         '                                <button type="button" onclick="location.href=\'/promote/'+value.event_id+'\'" class="btn btn-danger btn-simple" rel="tooltip" data-placement="bottom" title="Promote">\n' +

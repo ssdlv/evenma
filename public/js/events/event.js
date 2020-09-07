@@ -11,12 +11,12 @@ $(document).ready(function () {
     /*var pageURL = window.location.href;
     var lastURLSegment = pageURL.substr(pageURL.lastIndexOf('/') + 1);
     alert("previous url is: " + lastURLSegment);*/
-    var page = 1;
-    var city = $('#change-city').val();
-    var type = $('#change-type').val();
-    var start = $('#time-start').val();
-    var end = $('#time-end').val();
-    var search = $('#search').val();
+    let page = 1;
+    let city = $('#change-city').val();
+    let type = $('#change-type').val();
+    let start = $('#time-start').val();
+    let end = $('#time-end').val();
+    let search = $('#search').val();
 
     //console.log(city,type);
 
@@ -60,18 +60,18 @@ $(document).ready(function () {
 
     //Add View Event
     $(document).on('click','.add-view', function () {
-        var event = $(this).data('id');
+        let event = $(this).data('id');
         //confirm("Hello"+event);
         addView(event);
     });
 
     //Load
     $(document).on('click','#load-more-event', function () {
-        var type = $('#change-type').val();
-        var city = $('#change-city').val();
-        var start = $('#time-start').val();
-        var end = $('#time-end').val();
-        var search = $('#search').val();
+        let type = $('#change-type').val();
+        let city = $('#change-city').val();
+        let start = $('#time-start').val();
+        let end = $('#time-end').val();
+        let search = $('#search').val();
         page++;
         //console.log(city, type, search, start, end,page);
         events(city, type, search, start, end, page,1);
@@ -79,11 +79,11 @@ $(document).ready(function () {
 
     //KeyUP
     $(document).on('keyup','#search', function () {
-        var type = $('#change-type').val();
-        var city = $('#change-city').val();
-        var start = $('#time-start').val();
-        var end = $('#time-end').val();
-        var search = $('#search').val();
+        let type = $('#change-type').val();
+        let city = $('#change-city').val();
+        let start = $('#time-start').val();
+        let end = $('#time-end').val();
+        let search = $('#search').val();
         console.log(city, type, search, start, end);
         events(city, type, search, start, end, page,0);
     });

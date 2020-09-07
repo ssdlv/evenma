@@ -92,9 +92,9 @@
             $class = 'index-page sidebar-collapse';
             return view('pages.cli.home', compact('events', 'class'));
         }
-        public function details(Request $request)
+        public function details(int $id, Request $request)
         {
-            $event = Event::find($request->get('event'));
+            $event = Event::find($id);
 
             $event->time = date('h\h : i', $event->event_start);
             $event->date = date('Y-m-d', $event->event_start);
@@ -135,6 +135,7 @@
                 return response()->json(['event','class','suggestions']);
             }
             else{
+                //dd($event, $data);
                 return view('pages.cli.details', compact(['event','class','suggestions']));
             }
 

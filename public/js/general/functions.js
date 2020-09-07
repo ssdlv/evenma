@@ -230,14 +230,14 @@ function events(city, type, search, start = 0, end = 0, page = 1, nature = 0) {
                             rows_premium = rows_premium + '<div class="col-lg-4 col-md-6">\n' +
                                 '                                    <div class="card card-product">\n' +
                                 '                                        <div class="card-header card-header-image">\n' +
-                                '                                            <a href="/details?event='+value.event_id+'&_token='+token+'" data-id="'+value.event_id+'" class="add-view">\n' +
+                                '                                            <a href="/details/'+value.event_id+'" data-id="'+value.event_id+'" class="add-view">\n' +
                                 '                                                <img class="img" src="/files/events/'+value.event_image+'">\n' +
                                 '                                            </a>\n' +
                                 '                                        </div>\n' +
                                 '                                        <div class="card-body">\n' +
                                 '                                            <h6 class="card-category text-info">'+value.type_name+'</h6>\n' +
                                 '                                            <h4 class="card-title">\n' +
-                                '                                                <a href="/details?event='+value.event_id+'&_token='+token+'" data-id="'+value.event_id+'" class="add-view">'+value.event_title+'</a>\n' +
+                                '                                                <a href="/details/'+value.event_id+'" data-id="'+value.event_id+'" class="add-view">'+value.event_title+'</a>\n' +
                                 '                                            </h4>\n' +
                                 '                                            <p class="card-description">'+value.event_desc+'</p>\n' +
                                 '                                        </div>\n' +
@@ -257,14 +257,14 @@ function events(city, type, search, start = 0, end = 0, page = 1, nature = 0) {
                             rows = rows + '<div class="col-lg-4 col-md-6">\n' +
                                 '                                    <div class="card card-product">\n' +
                                 '                                        <div class="card-header card-header-image">\n' +
-                                '                                            <a href="/details?event='+value.event_id+'&_token='+token+'" data-id="'+value.event_id+'" class="add-view">\n' +
+                                '                                            <a href="/details/'+value.event_id+'" data-id="'+value.event_id+'" class="add-view">\n' +
                                 '                                                <img class="img" src="/files/events/'+value.event_image+'">\n' +
                                 '                                            </a>\n' +
                                 '                                        </div>\n' +
                                 '                                        <div class="card-body">\n' +
                                 '                                            <h6 class="card-category text-info">'+value.type_name+'</h6>\n' +
                                 '                                            <h4 class="card-title">\n' +
-                                '                                                <a href="/details?event='+value.event_id+'&_token='+token+'" data-id="'+value.event_id+'" class="add-view">'+value.event_title+'</a>\n' +
+                                '                                                <a href="/details/'+value.event_id+'" data-id="'+value.event_id+'" class="add-view">'+value.event_title+'</a>\n' +
                                 '                                            </h4>\n' +
                                 '                                            <p class="card-description">'+value.event_desc+'</p>\n' +
                                 '                                        </div>\n' +
@@ -284,14 +284,14 @@ function events(city, type, search, start = 0, end = 0, page = 1, nature = 0) {
                         rows = rows + '<div class="col-lg-4 col-md-6">\n' +
                             '                                    <div class="card card-product">\n' +
                             '                                        <div class="card-header card-header-image">\n' +
-                            '                                            <a href="/details?event='+value.event_id+'" data-id="'+value.event_id+'" class="add-view">\n' +
+                            '                                            <a href="/details/'+value.event_id+'" data-id="'+value.event_id+'" class="add-view">\n' +
                             '                                                <img class="img" src="/files/events/'+value.event_image+'">\n' +
                             '                                            </a>\n' +
                             '                                        </div>\n' +
                             '                                        <div class="card-body">\n' +
                             '                                            <h6 class="card-category text-info">'+value.type_name+'</h6>\n' +
                             '                                            <h4 class="card-title">\n' +
-                            '                                                <a href="/details?event='+value.event_id+' data-id="'+value.event_id+'" class="add-view">'+value.event_title+'</a>\n' +
+                            '                                                <a href="/details/'+value.event_id+' data-id="'+value.event_id+'" class="add-view">'+value.event_title+'</a>\n' +
                             '                                            </h4>\n' +
                             '                                            <p class="card-description">'+value.event_desc+'</p>\n' +
                             '                                        </div>\n' +

@@ -24,12 +24,12 @@
                     <div class="col-md-5 col-sm-5">
                         <div class="tab-content">
                             <div class="tab-pane active" id="product-page1">
-                                <img src="{{ $event->picture }}" style="height: 400px; max-width: 400px;">
+                                <img src="{{ env('APP_URL').'/'.$event->picture }}" style="height: 400px; max-width: 400px;">
                             </div>
                             @php $i = 2; @endphp
                             @foreach($event->pictures as $picture)
                             <div class="tab-pane" id="product-page@php echo $i @endphp" >
-                                <img src="{{ $picture->picture }}" style="height: 400px; max-width: 400px;">
+                                <img src="{{ env('APP_URL').'/'.$picture->picture }}" style="height: 400px; max-width: 400px;">
                             </div>
                                 @php $i++; @endphp
                             @endforeach
@@ -38,14 +38,14 @@
                             <ul class="nav flexi-nav ul-small-img" data-tabs="tabs" id="flexiselDemo1">
                                 <li class="nav-item">
                                     <a href="#product-page1" class="nav-link" data-toggle="tab">
-                                        <img src="{{ $event->picture }}">
+                                        <img src="{{ env('APP_URL').'/'.$event->picture }}">
                                     </a>
                                 </li>
                                 @php $i = 2; @endphp
                                 @foreach($event->pictures as $picture)
                                     <li class="nav-item">
                                         <a href="#product-page@php echo $i; @endphp" class="nav-link" data-toggle="tab">
-                                            <img src="{{ $picture->picture }}">
+                                            <img src="{{ env('APP_URL').'/'.$picture->picture }}">
                                         </a>
                                     </li>
                                     @php $i++; @endphp
@@ -580,14 +580,14 @@
                         <div class="col-lg-4 col-md-6">
                             <div class="card card-product">
                                 <div class="card-header card-header-image">
-                                    <a href="{{ route('details') }}?event={{ $suggestion->event_id }}">
-                                        <img class="img" src="{{ $suggestion->event_image }}">
+                                    <a href="{{ route('details', $suggestion->event_id ) }}">
+                                        <img class="img" src="{{ env('APP_URL').'/'.$suggestion->event_image }}">
                                     </a>
                                 </div>
                                 <div class="card-body">
                                     <h6 class="card-category text-info">{{ $suggestion->type_name }}</h6>
                                     <h4 class="card-title">
-                                        <a href="{{ route('details') }}?event={{ $suggestion->event_id }}">{{ $suggestion->event_title }}</a>
+                                        <a href="{{ route('details', $suggestion->event_id) }}">{{ $suggestion->event_title }}</a>
                                     </h4>
                                     <p class="card-description">{{ $suggestion->event_desc }}</p>
                                 </div>

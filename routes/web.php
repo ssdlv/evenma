@@ -60,7 +60,7 @@ Route::get('/register', [UIController::class, 'register'])->name('register');
 Route::get('/about', [UIController::class, 'about'])->name('about');
 Route::get('/contact', [UIController::class, 'contact'])->name('contact');
 
-Route::get('/details', [UIController::class, 'details'])->name('details');
+Route::get('/details/{id}', [UIController::class, 'details'])->name('details');
 
 Route::get('/home', [UIController::class, 'home']);
 Route::get('/ui/conditions/init', [UIController::class, 'conditions']);
